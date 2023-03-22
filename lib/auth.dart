@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-// batubabaaaaaaaaaaaaaaaaaaaaaaaajhgjhghjghj
+// batucan
 
 class Auth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
