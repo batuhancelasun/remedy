@@ -8,7 +8,7 @@ Future<void> main() async {
   runApp(const Remedy());
 }
 
-//sümooooss
+//sümoooosssafasfasf
 class Remedy extends StatelessWidget {
   const Remedy({Key? key}) : super(key: key);
 
