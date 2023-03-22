@@ -7,7 +7,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(const Remedy());
 }
-
+//sümoooo
 class Remedy extends StatelessWidget {
   const Remedy({Key? key}) : super(key: key);
 
