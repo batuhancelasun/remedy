@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:remedy/widget_tree.dart';
+import 'package:remedy/pages/home_page.dart';
+import 'package:remedy/pages/onboarding_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,16 +12,17 @@ Future<void> main() async {
 //sümoooosssafasfasf
 class Remedy extends StatelessWidget {
   const Remedy({Key? key}) : super(key: key);
-//tfs
+//tfsasdasd
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 208, 242, 255),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 208, 242, 255),
         primarySwatch: Colors.blue,
       ),
-      home: const WidgetTree(),
+      //home: const WidgetTree(),
+      home: OnBoardingScreen(),
     );
   }
 }
