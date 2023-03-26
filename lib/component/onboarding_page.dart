@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:remedy/component/rounded_button.dart';
 import 'package:remedy/pages/login_register_page.dart';
+import 'package:remedy/widget_tree.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage(
@@ -82,7 +83,7 @@ class OnBoardingPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
+                                builder: (context) => const WidgetTree()));
                       } else {
                         onNextPressed(currentScreenNo + 1);
                       }

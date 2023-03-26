@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:remedy/pages/home_page.dart';
 import 'package:remedy/pages/onboarding_screen.dart';
+import 'package:remedy/widget_tree.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
