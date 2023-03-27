@@ -65,7 +65,7 @@ class OnBoardingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Visibility(
-                  visible: (currentScreenNo == 1 | 0),
+                  visible: (currentScreenNo == 2 ? false : true),
                   child: RoundedButton(
                       title: "Skip",
                       onPressed: () {
@@ -80,7 +80,7 @@ class OnBoardingPage extends StatelessWidget {
                   ],
                 ),
                 Visibility(
-                  visible: true,
+                  visible: (currentScreenNo == 2 ? false : true),
                   child: RoundedButton(
                       title: "Next",
                       onPressed: () {
@@ -95,7 +95,7 @@ class OnBoardingPage extends StatelessWidget {
 
   Widget createProggressDots(bool isActiveScreen) {
     return Visibility(
-      visible: true,
+      visible: (currentScreenNo == 2 ? false : true),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8),
         height: isActiveScreen ? 15 : 10,
