@@ -64,11 +64,14 @@ class OnBoardingPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                RoundedButton(
-                    title: "Skip",
-                    onPressed: () {
-                      onSkipPressed(currentScreenNo + 2);
-                    }),
+                Visibility(
+                  visible: (currentScreenNo == 1 | 0),
+                  child: RoundedButton(
+                      title: "Skip",
+                      onPressed: () {
+                        onSkipPressed(currentScreenNo + 2);
+                      }),
+                ),
                 Row(
                   children: [
                     for (int index = 0; index < noOfScreen; index++)
@@ -76,18 +79,14 @@ class OnBoardingPage extends StatelessWidget {
                           (index == currentScreenNo) ? true : false)
                   ],
                 ),
-                RoundedButton(
-                    title: "Next",
-                    onPressed: () {
-                      if (currentScreenNo == 2) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const WidgetTree()));
-                      } else {
+                Visibility(
+                  visible: true,
+                  child: RoundedButton(
+                      title: "Next",
+                      onPressed: () {
                         onNextPressed(currentScreenNo + 1);
-                      }
-                    })
+                      }),
+                ),
               ],
             )
           ],
@@ -95,15 +94,18 @@ class OnBoardingPage extends StatelessWidget {
   }
 
   Widget createProggressDots(bool isActiveScreen) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      height: isActiveScreen ? 15 : 10,
-      width: 10,
-      decoration: BoxDecoration(
-          color: isActiveScreen
-              ? const Color.fromRGBO(82, 222, 160, 1)
-              : const Color.fromRGBO(3, 65, 114, 1),
-          borderRadius: const BorderRadius.all(Radius.circular(12))),
+    return Visibility(
+      visible: true,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        height: isActiveScreen ? 15 : 10,
+        width: 10,
+        decoration: BoxDecoration(
+            color: isActiveScreen
+                ? const Color.fromRGBO(82, 222, 160, 1)
+                : const Color.fromRGBO(3, 65, 114, 1),
+            borderRadius: const BorderRadius.all(Radius.circular(12))),
+      ),
     );
   }
 }

@@ -13,9 +13,10 @@ class RoundedButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+            // animationDuration: const Duration(milliseconds: 500),
+            backgroundColor: const Color.fromRGBO(3, 65, 114, 1),
             padding: EdgeInsets.zero,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+            shape: const StadiumBorder()),
         child: Text(title));
   }
 }

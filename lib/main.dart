@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:remedy/pages/home_page.dart';
+import 'package:remedy/pages/medicine_description.dart';
 import 'package:remedy/pages/onboarding_screen.dart';
 import 'package:remedy/widget_tree.dart';
 
@@ -22,8 +23,9 @@ class Remedy extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromARGB(255, 208, 242, 255),
         primarySwatch: Colors.blue,
       ),
-      //home: const WidgetTree(),
-      home: OnBoardingScreen(),
+      //home: const MedicineDescription(), //This home widget is used for new screens testing. Please do not delete it just comment it when you don't need it.
+      home:
+          OnBoardingScreen(), // This home widget is the actual home widget. Uncomment when you done with testing.
     );
   }
 }
