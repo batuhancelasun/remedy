@@ -5,6 +5,9 @@ import 'package:remedy/auth.dart';
 import 'package:remedy/pages/home_page.dart';
 import 'package:remedy/pages/register_page.dart';
 
+import 'package:remedy/pages/onboarding_screen.dart';
+
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -80,6 +83,15 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.help_outline_rounded),
+              onPressed: () => Get.to(OnBoardingScreen()),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         centerTitle: true,
         title: _title(),
       ),

@@ -66,7 +66,7 @@ class OnBoardingPage extends StatelessWidget {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Visibility(
                   visible: (currentScreenNo == 2 ? false : true),
