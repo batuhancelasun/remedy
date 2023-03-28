@@ -58,19 +58,3 @@ Marker buildMarker(Pharmacy pharmacy) => Marker(
         snippet: pharmacy.address,
       ),
     );
-
-
- 
-
-
- /* GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(39.925533, 32.866287),
-          zoom: 13.0,
-        ),
-        onMapCreated: (GoogleMapController controller) {
-          myController = controller;
-        },
-      ),
-*/
