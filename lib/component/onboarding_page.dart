@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:remedy/component/rounded_button.dart';
 import 'package:remedy/pages/home_page.dart';
-import 'package:remedy/pages/login_register_page.dart';
+import 'package:remedy/pages/login_page.dart';
 import 'package:remedy/widget_tree.dart';
 import 'package:get/get.dart';
 
