@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:remedy/auth.dart';
@@ -6,13 +7,14 @@ import 'package:remedy/pages/home_page_new.dart';
 import 'package:remedy/pages/medicine_description.dart';
 import 'package:get/get.dart';
 import 'package:remedy/widget_tree.dart';
-
 import 'onboarding_screen.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
-  final User? user = Auth().currentUser;
+  final User? currentUser = Auth().currentUser;
+  final TextEditingController _inputNameController = TextEditingController();
+  final FirebaseFirestore _firestoreAuth = FirebaseFirestore.instance;
 
   Future<void> signOut() async {
     await Auth().signOut();
@@ -24,11 +26,33 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _userUid() {
-    return Text(user?.email ?? 'User email');
+    return Text(currentUser?.email ?? 'User email');
   }
 
   Widget _merhaba() {
     return const Text('Merhaba!');
+  }
+
+  Widget _inputName() {
+    return TextField(
+      controller: _inputNameController,
+      decoration: const InputDecoration(labelText: 'isim'),
+    );
+  }
+
+// TODO: more updates and visual page required
+  Widget _updateName() {
+    return ElevatedButton(
+      child: const Text('Update name'),
+      onPressed: () {
+        var docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+        docUser.update(
+          {
+            'name': _inputNameController.text,
+          },
+        );
+      },
+    );
   }
 
   Widget _signOutButton() {
@@ -88,6 +112,8 @@ class HomePage extends StatelessWidget {
             _goToGPS(),
             _goToOnBoardingScreen(),
             _goToNewHomePage(),
+            _updateName(),
+            _inputName(),
           ],
         ),
       ),

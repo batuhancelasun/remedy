@@ -4,7 +4,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:remedy/auth.dart';
-
 import 'package:remedy/widget_tree.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -22,17 +21,17 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerName = TextEditingController();
   final TextEditingController _controllerSurName = TextEditingController();
-  final TextEditingController _controllerTc = TextEditingController();
+  final TextEditingController _controllerIdNumber = TextEditingController();
   final TextEditingController _controllerGender = TextEditingController();
-  final TextEditingController _controllerKanGrubu = TextEditingController();
+  final TextEditingController _controllerBloodType = TextEditingController();
 
   Future<void> register() async {
     try {
       await _authService.createUser(
           _controllerName.text,
           _controllerSurName.text,
-          _controllerTc.text,
-          _controllerKanGrubu.text,
+          _controllerIdNumber.text,
+          _controllerBloodType.text,
           _controllerGender.text,
           _controllerEmail.text,
           _controllerPassword.text);
@@ -149,10 +148,10 @@ class _RegisterPageState extends State<RegisterPage> {
           children: <Widget>[
             _nameText('Name', _controllerName),
             _surNameText('Surname', _controllerSurName),
-            _tcText("ID number", _controllerTc),
+            _tcText("ID number", _controllerIdNumber),
             _mailText('Email', _controllerEmail),
             _genderText('Gender', _controllerGender),
-            _kanGrubuText('Blood Type', _controllerKanGrubu),
+            _kanGrubuText('Blood Type', _controllerBloodType),
             _passwordText('Password', _controllerPassword),
             _submitButton(),
             _errorMessage(),

@@ -7,7 +7,6 @@ import 'package:remedy/pages/register_page.dart';
 
 import 'package:remedy/pages/onboarding_screen.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
