@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:remedy/auth.dart';
+import 'package:remedy/pages/home_page.dart';
+import 'package:remedy/pages/register_page.dart';
+
 import 'package:remedy/pages/onboarding_screen.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,32 +15,17 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  String? errorMessage = '';
-  bool isLogin = true;
+String? errorMessage = '';
+Auth _authService = Auth();
 
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
-  Future<void> signInWithEmailAndPassword() async {
+  Future<void> signIn() async {
     try {
-      await Auth().signInWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
-    }
-  }
-
-  Future<void> createUserWithEmailAndPassword() async {
-    try {
-      await Auth().createUserWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
+      await _authService.signIn(
+          _controllerEmail.text, _controllerPassword.text);
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -75,20 +64,17 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return ElevatedButton(
-      onPressed:
-          isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
-      child: Text(isLogin ? 'Login' : 'Register'),
+      onPressed: () {
+        signIn();
+      },
+      child: const Text('Login'),
     );
   }
 
-  Widget _loginOrRegisterButton() {
-    return TextButton(
-      onPressed: () {
-        setState(() {
-          isLogin = !isLogin;
-        });
-      },
-      child: Text(isLogin ? 'Register' : 'Login instead'),
+  Widget _registerButton() {
+    return ElevatedButton(
+      onPressed: () => Get.to(const RegisterPage()),
+      child: const Text('Register'),
     );
   }
 
@@ -121,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
             passwordText('Password', _controllerPassword),
             _errorMessage(),
             _submitButton(),
-            _loginOrRegisterButton(),
+            _registerButton(),
             SizedBox(
               height: 300.0,
               child: Image.asset("images/remedy.png"),
