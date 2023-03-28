@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:remedy/pages/home_page.dart';
+import 'package:remedy/pages/home_page_new.dart';
+import 'package:remedy/pages/onboarding_screen.dart';
 import 'package:remedy/widget_tree.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,9 +30,12 @@ class Remedy extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromARGB(255, 208, 242, 255),
         primarySwatch: remedy_dark_blue,
       ),
-      //home: const WidgetTree(), //This home widget is used for new screens testing. Please do not delete it just comment it when you don't need it.
-      home:
-          HomePage(), // This home widget is the actual home widget. Uncomment when you done with testing.
+      initialRoute:
+          initScreen == 0 || initScreen == null ? 'onBoarding' : 'homePage',
+      routes: {
+        'homePage': (context) => const NewHomePage(),
+        'onBoarding': (context) => OnBoardingScreen(),
+      },
     );
   }
 
