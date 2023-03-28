@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:remedy/auth.dart';
+import 'package:remedy/pages/google_maps.dart';
 import 'package:remedy/pages/medicine_description.dart';
 import 'package:get/get.dart';
+import 'package:remedy/widget_tree.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class HomePage extends StatelessWidget {
 
   Future<void> signOut() async {
     await Auth().signOut();
+    Get.to(const WidgetTree());
   }
 
   Widget _title() {
@@ -34,8 +37,13 @@ class HomePage extends StatelessWidget {
 
   Widget _goToDescription() {
     return ElevatedButton(
-        onPressed: () => Get.to(MedicineDescription()),
+        onPressed: () => Get.to(const MedicineDescription()),
         child: const Text("Go To Description List"));
+  }
+
+  Widget _goToGPS() {
+    return ElevatedButton(
+        onPressed: () => Get.to(const MapsPage()), child: const Text("GPS"));
   }
 
   @override
@@ -43,7 +51,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.menu), //Menü ayarlanacak.
+          icon: const Icon(Icons.menu), //Menü ayarlanacak.
           onPressed: () => Get.to(HomePage()),
         ),
         centerTitle: true,
@@ -61,6 +69,7 @@ class HomePage extends StatelessWidget {
             _userUid(),
             _signOutButton(),
             _goToDescription(),
+            _goToGPS(),
           ],
         ),
       ),

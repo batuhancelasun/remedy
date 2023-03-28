@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:remedy/component/description_list.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,7 @@ class MedicineDescription extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () => Get.to(HomePage()),
           ),
           centerTitle: true,

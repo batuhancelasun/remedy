@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Medicine {
   String title;
   String description;

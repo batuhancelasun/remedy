@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:remedy/pages/home_page.dart';
-import 'package:remedy/pages/medicine_description.dart';
-import 'package:remedy/pages/onboarding_screen.dart';
-import 'package:remedy/widget_tree.dart';
 import 'package:get/get.dart';
+import 'package:remedy/widget_tree.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +22,7 @@ class Remedy extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home:
-          const MedicineDescription(), //This home widget is used for new screens testing. Please do not delete it just comment it when you don't need it.
+          const WidgetTree(), //This home widget is used for new screens testing. Please do not delete it just comment it when you don't need it.
       //home: OnBoardingScreen(), // This home widget is the actual home widget. Uncomment when you done with testing.
     );
   }

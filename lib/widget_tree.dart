@@ -2,7 +2,6 @@ import 'package:remedy/auth.dart';
 import 'package:remedy/pages/home_page.dart';
 import 'package:remedy/pages/login_register_page.dart';
 import 'package:flutter/material.dart';
-import 'package:remedy/pages/onboarding_screen.dart';
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({Key? key}) : super(key: key);
