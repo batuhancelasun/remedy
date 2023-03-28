@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:remedy/auth.dart';
 import 'package:remedy/pages/google_maps.dart';
+import 'package:remedy/pages/home_page_new.dart';
 import 'package:remedy/pages/medicine_description.dart';
 import 'package:get/get.dart';
 import 'package:remedy/widget_tree.dart';
+
+import 'onboarding_screen.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -46,6 +49,19 @@ class HomePage extends StatelessWidget {
         onPressed: () => Get.to(const MapsPage()), child: const Text("GPS"));
   }
 
+  Widget _goToOnBoardingScreen() {
+    return ElevatedButton(
+      onPressed: () => Get.to(OnBoardingScreen()),
+      child: const Text("Go To OnBoarding Screen."),
+    );
+  }
+
+  Widget _goToNewHomePage() {
+    return ElevatedButton(
+        onPressed: () => Get.to(NewHomePage()),
+        child: const Text("Go To New Home Page."));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +86,8 @@ class HomePage extends StatelessWidget {
             _signOutButton(),
             _goToDescription(),
             _goToGPS(),
+            _goToOnBoardingScreen(),
+            _goToNewHomePage(),
           ],
         ),
       ),
