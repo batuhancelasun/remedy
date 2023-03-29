@@ -32,7 +32,6 @@ dependencies:
     sdk: flutter
   google_maps_flutter: ^2.2.5
   get: ^4.3.2
-  http: ^0.13.5
   location: ^4.4.0
   smooth_page_indicator: ^1.0.1
   

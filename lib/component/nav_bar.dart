@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:remedy/pages/account.dart';
 import 'package:remedy/pages/google_maps.dart';
-import 'package:remedy/pages/home_page.dart';
 import 'package:remedy/pages/home_page_new.dart';
 import 'package:remedy/pages/medicine_description.dart';
 

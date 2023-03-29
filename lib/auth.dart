@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 // batucanaaaa
 //asfasfasf
@@ -8,6 +7,7 @@ class Auth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestoreAuth = FirebaseFirestore.instance;
   User? get currentUser => _firebaseAuth.currentUser;
+  // User? get currentUserFirestore => _firestoreAuth.collection('Person').doc(currentUser?.uid);
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 

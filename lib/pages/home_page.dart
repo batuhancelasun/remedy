@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:remedy/auth.dart';
+import 'package:remedy/component/user_credentials.dart';
 import 'package:remedy/pages/google_maps.dart';
 import 'package:remedy/pages/home_page_new.dart';
 import 'package:remedy/pages/medicine_description.dart';
@@ -51,6 +52,7 @@ class HomePage extends StatelessWidget {
             'name': _inputNameController.text,
           },
         );
+        Get.to(HomePage());
       },
     );
   }
@@ -86,6 +88,37 @@ class HomePage extends StatelessWidget {
         child: const Text("Go To New Home Page."));
   }
 
+  /*  to get all user info
+    Stream<List<UserCredentials>> readUsers() => FirebaseFirestore.instance
+      .collection('Person')
+      .snapshots()
+      .map((snapshot) => snapshot.docs
+          .map((doc) => UserCredentials.fromJson(doc.data()))
+          .toList());
+*/
+
+  // To get only currentusers data
+  Future<UserCredentials?> okuUser() async {
+    final docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+    final snaphot = await docUser.get();
+
+    if (snaphot.exists) {
+      return UserCredentials.fromJson(snaphot.data()!);
+    }
+  }
+
+  Widget buildUser(UserCredentials usercredentials) {
+    return Text(
+      usercredentials.name,
+    );
+  }
+
+  Widget userUser(UserCredentials usercredentials) {
+    return Text(
+      usercredentials.email,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,26 +130,34 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: _title(),
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _merhaba(),
-            _userUid(),
-            _signOutButton(),
-            _goToDescription(),
-            _goToGPS(),
-            _goToOnBoardingScreen(),
-            _goToNewHomePage(),
-            _updateName(),
-            _inputName(),
-          ],
-        ),
-      ),
+      body: FutureBuilder<UserCredentials?>(
+          future: okuUser(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('wrong! ${snapshot.error}');
+            } else if (snapshot.hasData) {
+              final okuUser = snapshot.data!;
+              return Column(
+                children: [
+                  buildUser(okuUser),
+                  userUser(okuUser),
+                  _merhaba(),
+                  _userUid(),
+                  _signOutButton(),
+                  _goToDescription(),
+                  _goToGPS(),
+                  _goToOnBoardingScreen(),
+                  _goToNewHomePage(),
+                  _updateName(),
+                  _inputName(),
+                ],
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 }
