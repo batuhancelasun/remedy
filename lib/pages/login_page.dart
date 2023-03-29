@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:remedy/auth.dart';
+import 'package:remedy/component/user_credentials.dart';
 import 'package:remedy/pages/home_page.dart';
 import 'package:remedy/pages/register_page.dart';
 
@@ -72,9 +74,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _registerButton() {
     return ElevatedButton(
-      onPressed: () {
-        Get.to(const RegisterPage());
-      },
+      onPressed: () => Get.to(const RegisterPage()),
       child: const Text('Register'),
     );
   }

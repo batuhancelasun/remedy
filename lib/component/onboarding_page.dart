@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:remedy/component/rounded_button.dart';
-import 'package:remedy/pages/home_page.dart';
-import 'package:remedy/pages/login_page.dart';
 import 'package:remedy/widget_tree.dart';
 import 'package:get/get.dart';
 
@@ -104,7 +102,7 @@ class OnBoardingPage extends StatelessWidget {
                               const Color.fromRGBO(82, 222, 160, 1),
                           padding: const EdgeInsets.all(0),
                           fixedSize: const Size(370, 100)),
-                      onPressed: () => Get.to(HomePage()),
+                      onPressed: () => Get.to(const WidgetTree()),
                     )),
               ],
             )
