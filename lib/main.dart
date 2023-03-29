@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:remedy/pages/home_page_new.dart';
 import 'package:remedy/pages/onboarding_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:remedy/widget_tree.dart';
 
 int? initScreen;
 
@@ -29,9 +30,9 @@ class Remedy extends StatelessWidget {
         primarySwatch: remedy_dark_blue,
       ),
       initialRoute:
-          initScreen == 0 || initScreen == null ? 'onBoarding' : 'homePage',
+          initScreen == 0 || initScreen == null ? 'onBoarding' : 'widgetTree',
       routes: {
-        'homePage': (context) => const NewHomePage(),
+        'widgetTree': (context) => const WidgetTree(),
         'onBoarding': (context) => OnBoardingScreen(),
       },
     );
