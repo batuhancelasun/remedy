@@ -43,16 +43,17 @@ class AccountInfo extends StatelessWidget {
             const SizedBox(height: 20),
             // ignore: prefer_const_constructors
             SizedBox(
-                width: 200,
-                child: const ElevatedButton(
+              width: 200,
+              child: const ElevatedButton(
                   onPressed: null,
                   child: Text(
                     "Edit Profile",
                     style: TextStyle(color: Color.fromRGBO(208, 242, 255, 1)),
                   ),
                   style: ButtonStyle(
-                      backgroundColor: Color.fromRGBO(3, 65, 114, 1)),
-                )),
+                      //backgroundColor: Colors.amberAccent,
+                      )),
+            )
           ]),
         ),
       ),

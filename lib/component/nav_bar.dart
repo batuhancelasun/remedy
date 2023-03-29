@@ -15,15 +15,15 @@ import '../widget_tree.dart';
 class NavBar extends StatelessWidget {
   NavBar({super.key});
 
-  Future<void> signOut() async {
-    await Auth().signOut();
-    Get.to(const WidgetTree());
-  }
-
   final User? user = Auth().currentUser;
 
   Widget get _userUid {
     return Text(user?.email ?? 'User email');
+  }
+
+  Future<void> signOut() async {
+    await Auth().signOut();
+    Get.to(const WidgetTree());
   }
 
   Widget _signOutButton() {
