@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
         child: const Text("Go To New Home Page."));
   }
 
-  /*  to get all user info
+  /*  to get all user datas
     Stream<List<UserCredentials>> readUsers() => FirebaseFirestore.instance
       .collection('Person')
       .snapshots()
