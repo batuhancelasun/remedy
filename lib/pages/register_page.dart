@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -101,13 +102,31 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Widget _genderText(
-    String title,
+  String? selectedValue;
+  Widget _genderButton(
     TextEditingController controller,
   ) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(labelText: title),
+    return DropdownButton(
+      onChanged: (String? newValue) {
+        controller.text = newValue ?? '';
+        setState(
+          () {
+            selectedValue = newValue!;
+          },
+        );
+      },
+      hint: const Text('Select gender'),
+      items: const [
+        DropdownMenuItem<String>(
+          value: 'male',
+          child: Text('male'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'female',
+          child: Text('female'),
+        ),
+      ].toList(),
+      value: selectedValue,
     );
   }
 
@@ -148,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
               _surNameText('Surname', _controllerSurName),
               _tcText("ID number", _controllerIdNumber),
               _mailText('Email', _controllerEmail),
-              _genderText('Gender', _controllerGender),
+              _genderButton(_controllerGender),
               _kanGrubuText('Blood Type', _controllerBloodType),
               _passwordText('Password', _controllerPassword),
               _submitButton(),
