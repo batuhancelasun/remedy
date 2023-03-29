@@ -24,8 +24,6 @@ class AccountInfo extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           child: Column(children: [
             SizedBox(
-              width: 128,
-              height: 128,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: const Image(
@@ -46,6 +44,7 @@ class AccountInfo extends StatelessWidget {
               width: 200,
               child: const ElevatedButton(
                   onPressed: null,
+                  // ignore: sort_child_properties_last
                   child: Text(
                     "Edit Profile",
                     style: TextStyle(color: Color.fromRGBO(208, 242, 255, 1)),

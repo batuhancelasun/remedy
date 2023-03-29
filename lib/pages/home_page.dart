@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:remedy/component/a.dart';
 
 import '../auth.dart';
 import '../component/user_credentials.dart';
@@ -119,8 +120,14 @@ class HomePage extends StatelessWidget {
 
   Widget _goToNewHomePage() {
     return ElevatedButton(
-        onPressed: () => Get.to(const NewHomePage()),
+        onPressed: () => Get.to(NewHomePage()),
         child: const Text("Go To New Home Page."));
+  }
+
+  Widget _goToTestHomePage() {
+    return ElevatedButton(
+        onPressed: () => Get.to(MyHomePage()),
+        child: const Text("Go To Test Home Page"));
   }
 
   @override
@@ -154,6 +161,7 @@ class HomePage extends StatelessWidget {
                   _goToNewHomePage(),
                   _updateName(),
                   _inputName(),
+                  _goToTestHomePage(),
                 ],
               );
             } else {
