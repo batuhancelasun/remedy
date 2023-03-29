@@ -26,6 +26,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _controllerGender = TextEditingController();
   final TextEditingController _controllerBloodType = TextEditingController();
 
+  late bool _passwordVisible;
+
   Future<void> register() async {
     try {
       await _authService.createUser(
@@ -46,6 +48,11 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _errorMessage() {
     return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+  }
+
+  @override
+  void initState() {
+    _passwordVisible = false;
   }
 
   Widget _title() {
@@ -189,10 +196,24 @@ class _RegisterPageState extends State<RegisterPage> {
     String title,
     TextEditingController controller,
   ) {
-    return TextField(
-      obscureText: true,
+    return TextFormField(
+      obscureText: !_passwordVisible,
       controller: controller,
-      decoration: InputDecoration(labelText: title),
+      decoration: InputDecoration(
+          labelText: title,
+          hintText: "Please enter your password.",
+          suffixIcon: IconButton(
+            icon: Icon(
+              _passwordVisible
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+            ),
+            onPressed: () {
+              setState(() {
+                _passwordVisible = !_passwordVisible;
+              });
+            },
+          )),
     );
   }
 

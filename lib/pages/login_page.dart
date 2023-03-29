@@ -20,6 +20,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
+  late bool _passwordVisible;
+
   Future<void> signIn() async {
     try {
       await _authService.signIn(
@@ -31,14 +33,33 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  @override
+  void initState() {
+    _passwordVisible = false;
+  }
+
   Widget passwordText(
     String title,
     TextEditingController controller,
   ) {
-    return TextField(
-      obscureText: true,
+    return TextFormField(
+      obscureText: _passwordVisible,
       controller: controller,
-      decoration: InputDecoration(labelText: title),
+      decoration: InputDecoration(
+          labelText: title,
+          hintText: "Please enter your password.",
+          suffixIcon: IconButton(
+            icon: Icon(
+              _passwordVisible
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+            ),
+            onPressed: () {
+              setState(() {
+                _passwordVisible = !_passwordVisible;
+              });
+            },
+          )),
     );
   }
 
@@ -52,7 +73,8 @@ class _LoginPageState extends State<LoginPage> {
   ) {
     return TextField(
       controller: controller,
-      decoration: InputDecoration(labelText: title),
+      decoration: InputDecoration(
+          labelText: title, hintText: "Please enter your email address."),
     );
   }
 
