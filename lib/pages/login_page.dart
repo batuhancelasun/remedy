@@ -1,13 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:remedy/auth.dart';
-import 'package:remedy/component/user_credentials.dart';
-import 'package:remedy/pages/home_page.dart';
-import 'package:remedy/pages/register_page.dart';
 
-import 'package:remedy/pages/onboarding_screen.dart';
+import '../auth.dart';
+import 'onboarding_screen.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -34,6 +31,17 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  Widget passwordText(
+    String title,
+    TextEditingController controller,
+  ) {
+    return TextField(
+      obscureText: true,
+      controller: controller,
+      decoration: InputDecoration(labelText: title),
+    );
+  }
+
   Widget _title() {
     return const Text('Remedy');
   }
@@ -43,17 +51,6 @@ class _LoginPageState extends State<LoginPage> {
     TextEditingController controller,
   ) {
     return TextField(
-      controller: controller,
-      decoration: InputDecoration(labelText: title),
-    );
-  }
-
-  Widget passwordText(
-    String title,
-    TextEditingController controller,
-  ) {
-    return TextField(
-      obscureText: true,
       controller: controller,
       decoration: InputDecoration(labelText: title),
     );

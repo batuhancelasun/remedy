@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:remedy/pages/account.dart';
-import 'package:remedy/pages/google_maps.dart';
-import 'package:remedy/pages/home_page_new.dart';
-import 'package:remedy/pages/medicine_description.dart';
 
 import '../auth.dart';
+import '../pages/account.dart';
+import '../pages/google_maps.dart';
+import '../pages/home_page_new.dart';
+import '../pages/medicine_description.dart';
 import '../widget_tree.dart';
 
 class NavBar extends StatelessWidget {
@@ -14,13 +14,13 @@ class NavBar extends StatelessWidget {
 
   final User? user = Auth().currentUser;
 
-  Widget get _userUid {
-    return Text(user?.email ?? 'User email');
-  }
-
   Future<void> signOut() async {
     await Auth().signOut();
     Get.to(const WidgetTree());
+  }
+
+  Widget get _userUid {
+    return Text(user?.email ?? 'User email');
   }
 
   Widget _signOutButton() {

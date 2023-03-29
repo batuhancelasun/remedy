@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:remedy/component/onboarding_page.dart';
+
+import '../component/onboarding_page.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   OnBoardingScreen({Key? key}) : super(key: key);
 
   PageController controller = PageController(initialPage: 0);
+
+  void changeScreen(int nextScreenNo) {
+    controller.animateToPage(nextScreenNo,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOutCubic);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +52,5 @@ class OnBoardingScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void changeScreen(int nextScreenNo) {
-    controller.animateToPage(nextScreenNo,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeInOutCubic);
   }
 }

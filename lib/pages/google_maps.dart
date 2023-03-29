@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:remedy/component/pharmacy_list.dart';
-import 'package:remedy/pages/home_page_new.dart';
+
+import '../component/pharmacy_list.dart';
+import 'home_page_new.dart';
 
 class MapsPage extends StatefulWidget {
   const MapsPage({super.key});
@@ -20,12 +21,13 @@ Stream<Set<Pharmacy>> getMarkerData() => FirebaseFirestore.instance
 
 class _MapsPageState extends State<MapsPage> {
   late GoogleMapController myController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => Get.to(const NewHomePage()),
         ),
       ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:remedy/component/description_list.dart';
 import 'package:get/get.dart';
-import 'package:remedy/pages/home_page.dart';
 
+import '../component/description_list.dart';
 import '../component/medicine_description_details.dart';
+import 'home_page.dart';
 
 class MedicineDescription extends StatelessWidget {
   const MedicineDescription({super.key});
@@ -33,7 +33,7 @@ class MedicineDescription extends StatelessWidget {
                     height: 50,
                     width: 50,
                   ),
-                  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                  trailing: const Icon(Icons.arrow_forward_ios_rounded),
                   onTap: () {
                     Get.to(MedicineDescriptionDetails(
                       medicine: medicine,

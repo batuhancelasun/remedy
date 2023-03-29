@@ -1,26 +1,61 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:remedy/auth.dart';
-import 'package:remedy/component/user_credentials.dart';
-import 'package:remedy/pages/google_maps.dart';
-import 'package:remedy/pages/home_page_new.dart';
-import 'package:remedy/pages/medicine_description.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:remedy/widget_tree.dart';
+
+import '../auth.dart';
+import '../component/user_credentials.dart';
+import '../widget_tree.dart';
+import 'google_maps.dart';
+import 'home_page_new.dart';
+import 'medicine_description.dart';
 import 'onboarding_screen.dart';
+
+// ignore_for_file: body_might_complete_normally_nullable
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   final User? currentUser = Auth().currentUser;
-  final TextEditingController _inputNameController = TextEditingController();
+
   final FirebaseFirestore _firestoreAuth = FirebaseFirestore.instance;
+  final TextEditingController _inputNameController = TextEditingController();
 
   Future<void> signOut() async {
     await Auth().signOut();
     Get.to(const WidgetTree());
   }
+
+  // To get only currentusers data
+  Future<UserCredentials?> okuUser() async {
+    final docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+    final snaphot = await docUser.get();
+
+    if (snaphot.exists) {
+      return UserCredentials.fromJson(snaphot.data()!);
+    }
+  }
+
+  Widget buildUser(UserCredentials usercredentials) {
+    return Text(
+      usercredentials.name,
+    );
+  }
+
+  Widget userUser(UserCredentials usercredentials) {
+    return Text(
+      usercredentials.email,
+    );
+  }
+
+  /*  to get all user datas
+    Stream<List<UserCredentials>> readUsers() => FirebaseFirestore.instance
+      .collection('Person')
+      .snapshots()
+      .map((snapshot) => snapshot.docs
+          .map((doc) => UserCredentials.fromJson(doc.data()))
+          .toList());
+*/
 
   Widget _title() {
     return const Text('Remedy');
@@ -84,39 +119,8 @@ class HomePage extends StatelessWidget {
 
   Widget _goToNewHomePage() {
     return ElevatedButton(
-        onPressed: () => Get.to(NewHomePage()),
+        onPressed: () => Get.to(const NewHomePage()),
         child: const Text("Go To New Home Page."));
-  }
-
-  /*  to get all user datas
-    Stream<List<UserCredentials>> readUsers() => FirebaseFirestore.instance
-      .collection('Person')
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-          .map((doc) => UserCredentials.fromJson(doc.data()))
-          .toList());
-*/
-
-  // To get only currentusers data
-  Future<UserCredentials?> okuUser() async {
-    final docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
-    final snaphot = await docUser.get();
-
-    if (snaphot.exists) {
-      return UserCredentials.fromJson(snaphot.data()!);
-    }
-  }
-
-  Widget buildUser(UserCredentials usercredentials) {
-    return Text(
-      usercredentials.name,
-    );
-  }
-
-  Widget userUser(UserCredentials usercredentials) {
-    return Text(
-      usercredentials.email,
-    );
   }
 
   @override

@@ -1,8 +1,8 @@
 class Medicine {
-  String title;
-  String description;
-
   Medicine({required this.title, required this.description});
+
+  String description;
+  String title;
 }
 
 List<Medicine> medicineList = [
