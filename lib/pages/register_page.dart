@@ -92,41 +92,96 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Widget _kanGrubuText(
+  String? selectedBloodType;
+  Widget _bloodTypeButton(
     String title,
     TextEditingController controller,
   ) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(labelText: title),
-    );
-  }
-
-  String? selectedValue;
-  Widget _genderButton(
-    TextEditingController controller,
-  ) {
     return DropdownButton(
+      icon: const Padding(
+        padding: EdgeInsets.only(left: 84.5),
+        child: Icon(Icons.arrow_circle_down),
+      ),
       onChanged: (String? newValue) {
         controller.text = newValue ?? '';
         setState(
           () {
-            selectedValue = newValue!;
+            selectedBloodType = newValue!;
           },
         );
       },
-      hint: const Text('Select gender'),
+      hint: const Text('Please choose your blood type.'),
       items: const [
         DropdownMenuItem<String>(
-          value: 'male',
-          child: Text('male'),
+          value: 'A+',
+          child: Text('A+ (A Rh Positive)'),
         ),
         DropdownMenuItem<String>(
-          value: 'female',
-          child: Text('female'),
+          value: 'A-',
+          child: Text('A- (A Rh Negative)'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'B+',
+          child: Text('B+ (B Rh Positive)'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'B-',
+          child: Text('B- (B Rh Negative)'),
+        ),
+        DropdownMenuItem<String>(
+          value: '0+',
+          child: Text('0+ (0 Rh Positive)'),
+        ),
+        DropdownMenuItem<String>(
+          value: '0-',
+          child: Text('0- (0 Rh Negative)'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'AB+',
+          child: Text('AB+ (AB Rh Positive)'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'AB-',
+          child: Text('AB- (AB Rh Negative)'),
         ),
       ].toList(),
-      value: selectedValue,
+      value: selectedBloodType,
+    );
+  }
+
+  String? selectedGender;
+  Widget _genderButton(
+    TextEditingController controller,
+  ) {
+    return DropdownButton(
+      icon: const Padding(
+        padding: EdgeInsets.only(left: 110),
+        child: Icon(Icons.arrow_circle_down),
+      ),
+      onChanged: (String? newValue) {
+        controller.text = newValue ?? '';
+        setState(
+          () {
+            selectedGender = newValue!;
+          },
+        );
+      },
+      hint: const Text('Please choose your gender.'),
+      items: const [
+        DropdownMenuItem<String>(
+          value: 'Male',
+          child: Text('Male'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'Female',
+          child: Text('Female'),
+        ),
+        DropdownMenuItem<String>(
+          value: 'Other',
+          child: Text('Other'),
+        ),
+      ].toList(),
+      value: selectedGender,
     );
   }
 
@@ -163,12 +218,12 @@ class _RegisterPageState extends State<RegisterPage> {
           padding: const EdgeInsets.all(20),
           child: ListView(
             children: <Widget>[
-              _nameText('Name', _controllerName),
-              _surNameText('Surname', _controllerSurName),
-              _tcText("ID number", _controllerIdNumber),
+              _nameText('First Name', _controllerName),
+              _surNameText('Last Name', _controllerSurName),
+              _tcText("ID Number", _controllerIdNumber),
               _mailText('Email', _controllerEmail),
               _genderButton(_controllerGender),
-              _kanGrubuText('Blood Type', _controllerBloodType),
+              _bloodTypeButton('Blood Type', _controllerBloodType),
               _passwordText('Password', _controllerPassword),
               _submitButton(),
               _errorMessage(),
