@@ -134,30 +134,27 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _title(),
-        centerTitle: true,
-      ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _nameText('Name', _controllerName),
-            _surNameText('Surname', _controllerSurName),
-            _tcText("ID number", _controllerIdNumber),
-            _mailText('Email', _controllerEmail),
-            _genderText('Gender', _controllerGender),
-            _kanGrubuText('Blood Type', _controllerBloodType),
-            _passwordText('Password', _controllerPassword),
-            _submitButton(),
-            _errorMessage(),
-          ],
+        appBar: AppBar(
+          title: _title(),
+          centerTitle: true,
         ),
-      ),
-    );
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          padding: const EdgeInsets.all(20),
+          child: ListView(
+            children: <Widget>[
+              _nameText('Name', _controllerName),
+              _surNameText('Surname', _controllerSurName),
+              _tcText("ID number", _controllerIdNumber),
+              _mailText('Email', _controllerEmail),
+              _genderText('Gender', _controllerGender),
+              _kanGrubuText('Blood Type', _controllerBloodType),
+              _passwordText('Password', _controllerPassword),
+              _submitButton(),
+              _errorMessage(),
+            ],
+          ),
+        ));
   }
 }
