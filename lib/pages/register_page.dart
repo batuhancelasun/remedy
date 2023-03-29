@@ -13,6 +13,7 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
+//batubaba
 Auth _authService = Auth();
 String? errorMessage = '';
 
