@@ -72,7 +72,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _registerButton() {
     return ElevatedButton(
-      onPressed: () => Get.to(const RegisterPage()),
+      onPressed: () {
+        Get.to(const RegisterPage());
+      },
       child: const Text('Register'),
     );
   }
@@ -80,7 +82,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {
@@ -98,9 +99,7 @@ class _LoginPageState extends State<LoginPage> {
         height: double.infinity,
         width: double.infinity,
         padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: <Widget>[
             _mailText('Email', _controllerEmail),
             passwordText('Password', _controllerPassword),
