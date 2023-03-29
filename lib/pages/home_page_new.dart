@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:remedy/component/nav_bar.dart';
+
+import '../component/nav_bar.dart';
 
 class NewHomePage extends StatelessWidget {
   const NewHomePage({super.key});

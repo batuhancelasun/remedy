@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:remedy/component/rounded_button.dart';
-import 'package:remedy/widget_tree.dart';
 import 'package:get/get.dart';
+
+import '../widget_tree.dart';
+import 'rounded_button.dart';
 
 class OnBoardingPage extends StatelessWidget {
   OnBoardingPage(
@@ -15,21 +16,30 @@ class OnBoardingPage extends StatelessWidget {
       required this.onSkipPressed})
       : super(key: key);
 
+  final PageController controller = PageController(initialPage: 0);
+  int currentScreenNo;
+  final String description;
   final Image image;
-
+  final int noOfScreen;
+  final Function(int) onNextPressed;
+  final Function(int) onSkipPressed;
   final String title;
 
-  final String description;
-
-  final int noOfScreen;
-
-  final Function(int) onNextPressed;
-
-  int currentScreenNo;
-
-  final Function(int) onSkipPressed;
-
-  final PageController controller = PageController(initialPage: 0);
+  Widget createProggressDots(bool isActiveScreen) {
+    return Visibility(
+      visible: (currentScreenNo == 2 ? false : true),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        height: isActiveScreen ? 15 : 10,
+        width: 10,
+        decoration: BoxDecoration(
+            color: isActiveScreen
+                ? const Color.fromRGBO(82, 222, 160, 1)
+                : const Color.fromRGBO(3, 65, 114, 1),
+            borderRadius: const BorderRadius.all(Radius.circular(12))),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,21 +118,5 @@ class OnBoardingPage extends StatelessWidget {
             )
           ],
         ));
-  }
-
-  Widget createProggressDots(bool isActiveScreen) {
-    return Visibility(
-      visible: (currentScreenNo == 2 ? false : true),
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10),
-        height: isActiveScreen ? 15 : 10,
-        width: 10,
-        decoration: BoxDecoration(
-            color: isActiveScreen
-                ? const Color.fromRGBO(82, 222, 160, 1)
-                : const Color.fromRGBO(3, 65, 114, 1),
-            borderRadius: const BorderRadius.all(Radius.circular(12))),
-      ),
-    );
   }
 }

@@ -1,11 +1,9 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:remedy/auth.dart';
-import 'package:remedy/widget_tree.dart';
+
+import '../auth.dart';
+import '../widget_tree.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,13 +16,15 @@ Auth _authService = Auth();
 String? errorMessage = '';
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerName = TextEditingController();
-  final TextEditingController _controllerSurName = TextEditingController();
-  final TextEditingController _controllerIdNumber = TextEditingController();
-  final TextEditingController _controllerGender = TextEditingController();
+  String? selectedValue;
+
   final TextEditingController _controllerBloodType = TextEditingController();
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerGender = TextEditingController();
+  final TextEditingController _controllerIdNumber = TextEditingController();
+  final TextEditingController _controllerName = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController _controllerSurName = TextEditingController();
 
   Future<void> register() async {
     try {
@@ -102,7 +102,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  String? selectedValue;
   Widget _genderButton(
     TextEditingController controller,
   ) {

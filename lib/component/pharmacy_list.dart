@@ -1,10 +1,4 @@
 class Pharmacy {
-  final String  id;
-  final String address;
-  final String name;
-  final double longitude;
-  final double latitude;
-
   Pharmacy({
     required this.id,
     required this.address,
@@ -13,6 +7,12 @@ class Pharmacy {
     required this.latitude,
   });
 
+  final String address;
+  final String id;
+  final double latitude;
+  final double longitude;
+  final String name;
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'address': address,
@@ -20,6 +20,7 @@ class Pharmacy {
         'longitude': longitude,
         'latitude': latitude,
       };
+
   static Pharmacy fromJson(Map<String, dynamic> json) => Pharmacy(
         id: json['id'],
         address: json['address'],
