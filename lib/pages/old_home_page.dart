@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../auth.dart';
-import '../getDatas/datas/user_credentials.dart';
 import '../widget_tree.dart';
 import 'google_maps_page.dart';
 import 'home_page.dart';
@@ -14,12 +13,37 @@ import 'onboarding_screen.dart';
 
 // ignore_for_file: body_might_complete_normally_nullable
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   final User? currentUser = Auth().currentUser;
 
+  String? myEmail;
+  String? myName;
+  String? myBloodType;
+  _fetch() async {
+    final firebaseUser = Auth().currentUser;
+    if (firebaseUser != null) {
+      await FirebaseFirestore.instance
+          .collection('Person')
+          .doc(firebaseUser.uid)
+          .get()
+          .then(
+        (ds) {
+          myEmail = ds.data()!['email'];
+          myName = ds.data()!['name'];
+          myBloodType = ds.data()!['kanGrubu'];
+        },
+      );
+    }
+  }
+
   final FirebaseFirestore _firestoreAuth = FirebaseFirestore.instance;
+
   final TextEditingController _inputNameController = TextEditingController();
 
   Future<void> signOut() async {
@@ -28,26 +52,26 @@ class HomePage extends StatelessWidget {
   }
 
   // To get only currentusers data
-  Future<UserCredentials?> okuUser() async {
-    final docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
-    final snaphot = await docUser.get();
+  // Future<UserCredentials?> okuUser() async {
+  //   final docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+  //   final snaphot = await docUser.get();
 
-    if (snaphot.exists) {
-      return UserCredentials.fromJson(snaphot.data()!);
-    }
-  }
+  //   if (snaphot.exists) {
+  //     return UserCredentials.fromJson(snaphot.data()!);
+  //   }
+  // }
 
-  Widget buildUser(UserCredentials usercredentials) {
-    return Text(
-      usercredentials.name,
-    );
-  }
+  // Widget buildUser(UserCredentials usercredentials) {
+  //   return Text(
+  //     usercredentials.name,
+  //   );
+  // }
 
-  Widget userUser(UserCredentials usercredentials) {
-    return Text(
-      usercredentials.email,
-    );
-  }
+  // Widget userUser(UserCredentials usercredentials) {
+  //   return Text(
+  //     usercredentials.email,
+  //   );
+  // }
 
   /*  to get all user datas
     Stream<List<UserCredentials>> readUsers() => FirebaseFirestore.instance
@@ -57,7 +81,6 @@ class HomePage extends StatelessWidget {
           .map((doc) => UserCredentials.fromJson(doc.data()))
           .toList());
 */
-
   Widget _title() {
     return const Text('Remedy');
   }
@@ -142,34 +165,13 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: _title(),
       ),
-      body: FutureBuilder<UserCredentials?>(
-        future: okuUser(),
+      body: FutureBuilder(
+        future: _fetch(),
         builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Text('wrong! ${snapshot.error}');
-          } else if (snapshot.hasData) {
-            final okuUser = snapshot.data!;
-            return Column(
-              children: [
-                buildUser(okuUser),
-                userUser(okuUser),
-                _merhaba(),
-                _userUid(),
-                _signOutButton(),
-                _goToDescription(),
-                _goToGPS(),
-                _goToOnBoardingScreen(),
-                _goToNewHomePage(),
-                _updateName(),
-                _inputName(),
-                _goToTestHomePage(),
-              ],
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Text('Wait');
           }
+          return Text('mail:  $myEmail isim:  $myName  blood: $myBloodType');
         },
       ),
     );
