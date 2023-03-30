@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../auth.dart';
 import '../pages/account.dart';
 import '../pages/google_maps.dart';
-import '../pages/home_page_new.dart';
+import '../pages/home_page.dart';
 import '../widget_tree.dart';
 import 'medicine_description_details.dart';
 
@@ -56,7 +56,7 @@ class NavBar extends StatelessWidget {
               color: Color.fromRGBO(3, 65, 114, 1),
             ),
             title: const Text("Home Page"),
-            onTap: () => Get.to(NewHomePage()),
+            onTap: () => Get.to(MyHomePage()),
           ),
           Divider(),
           ListTile(

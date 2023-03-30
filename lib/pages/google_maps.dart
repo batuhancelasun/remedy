@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../component/pharmacy_list.dart';
-import 'new_home_page.dart';
+import 'home_page.dart';
 
 class MapsPage extends StatefulWidget {
   const MapsPage({super.key});
@@ -28,7 +28,7 @@ class _MapsPageState extends State<MapsPage> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Get.to(NewHomePage()),
+          onPressed: () => Get.to(MyHomePage()),
         ),
       ),
       body: StreamBuilder<Set<Pharmacy>>(

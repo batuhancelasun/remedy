@@ -36,8 +36,8 @@ class MedicineDescription extends StatelessWidget {
                   trailing: const Icon(Icons.arrow_forward_ios_rounded),
                   onTap: () {
                     Get.to(MedicineDescriptionDetails(
-                      medicine: medicine,
-                    ));
+                        //medicine: medicine,
+                        ));
                   },
                 ),
               );

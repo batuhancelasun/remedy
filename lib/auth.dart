@@ -28,7 +28,7 @@ class Auth {
       'surName': surname,
       'email': email,
       'idNumber': idNumber,
-      'kanGrubu': bloodType,
+      'bloodType': bloodType,
       'gender': gender,
     });
   }

@@ -9,7 +9,6 @@ import '../widget_tree.dart';
 import 'google_maps.dart';
 import 'home_page.dart';
 import 'medicine_description.dart';
-import 'new_home_page.dart';
 import 'onboarding_screen.dart';
 
 // ignore_for_file: body_might_complete_normally_nullable
@@ -118,16 +117,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _goToNewHomePage() {
-    return ElevatedButton(
-        onPressed: () => Get.to(NewHomePage()),
-        child: const Text("Go To New Home Page."));
-  }
-
-  Widget _goToTestHomePage() {
+  Widget _goToActualHomePage() {
     return ElevatedButton(
         onPressed: () => Get.to(MyHomePage()),
-        child: const Text("Go To Test Home Page"));
+        child: const Text("Go To Actual Home Page"));
   }
 
   @override
@@ -158,10 +151,9 @@ class HomePage extends StatelessWidget {
                   _goToDescription(),
                   _goToGPS(),
                   _goToOnBoardingScreen(),
-                  _goToNewHomePage(),
                   _updateName(),
                   _inputName(),
-                  _goToTestHomePage(),
+                  _goToActualHomePage(),
                 ],
               );
             } else {
