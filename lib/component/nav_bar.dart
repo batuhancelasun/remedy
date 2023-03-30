@@ -5,9 +5,8 @@ import 'package:get/get.dart';
 import '../auth.dart';
 import '../pages/account.dart';
 import '../pages/google_maps.dart';
-import '../pages/home_page.dart';
+import '../pages/home_page_new.dart';
 import '../widget_tree.dart';
-import 'medicine_description_details.dart';
 
 class NavBar extends StatelessWidget {
   NavBar({super.key});
@@ -65,7 +64,7 @@ class NavBar extends StatelessWidget {
               color: Color.fromRGBO(82, 222, 160, 1),
             ),
             title: Text("Descriptions of Medicines"),
-            onTap: () => Get.to(const MedicineDescriptionDetails()),
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(
@@ -73,7 +72,7 @@ class NavBar extends StatelessWidget {
               color: Color.fromRGBO(110, 206, 242, 1),
             ),
             title: const Text("Pharmacy List"),
-            onTap: () => Get.to(const MapsPage()),
+            onTap: () => Get.to(const GoogleMapsPage()),
           ),
           const Divider(),
           ListTile(

@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:remedy/component/user_credentials.dart';
-import 'package:remedy/pages/medicine_description.dart';
 
 import '../auth.dart';
 import '../component/nav_bar.dart';
+import '../getDatas/datas/user_credentials.dart';
 
 class NewHomePage extends StatelessWidget {
   NewHomePage({super.key});
@@ -47,6 +45,7 @@ class NewHomePage extends StatelessWidget {
             children: [
               Expanded(
                 child: ElevatedButton(
+                  onPressed: () {},
                   child: Container(
                     padding: EdgeInsets.all(0),
                     margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -100,11 +99,12 @@ class NewHomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () => Get.to(const MedicineDescription()),
+                  // onPressed: () => Get.to(const MedicineDescription()),
                 ),
               ),
               Expanded(
                 child: ElevatedButton(
+                  onPressed: () {},
                   child: Container(
                     child: Center(
                       child: Column(
@@ -157,11 +157,12 @@ class NewHomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  onPressed: () => Get.to(const MedicineDescription()),
+                  // onPressed: () => Get.to(const MedicineDescription()),
                 ),
               ),
               Expanded(
                 child: ElevatedButton(
+                  onPressed: () {},
                   child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -212,11 +213,12 @@ class NewHomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  onPressed: () => Get.to(const MedicineDescription()),
+                  // onPressed: () => Get.to(const MedicineDescription()),
                 ),
               ),
               Expanded(
                 child: ElevatedButton(
+                  onPressed: () {},
                   child: Container(
                     child: Center(
                       child: Column(
@@ -269,7 +271,7 @@ class NewHomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  onPressed: () => Get.to(const MedicineDescription()),
+                  // onPressed: () => Get.to(const MedicineDescription()),
                 ),
               ),
             ],

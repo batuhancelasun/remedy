@@ -12,17 +12,21 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SharedPreferences preferences = await SharedPreferences.getInstance();
-  initScreen = await preferences.getInt('initScreen');
+  initScreen = preferences.getInt('initScreen');
   await preferences.setInt('initScreen', 1);
-  runApp(Remedy());
+  runApp(const Remedy());
 }
 
-//sümoooosssafasfasf
-class Remedy extends StatelessWidget {
-  Remedy({Key? key}) : super(key: key);
+class Remedy extends StatefulWidget {
+  const Remedy({Key? key}) : super(key: key);
 
-  MaterialColor remedy_dark_blue =
-      MaterialColor(Color.fromRGBO(3, 65, 114, 1).value, <int, Color>{
+  @override
+  State<Remedy> createState() => _RemedyState();
+}
+
+class _RemedyState extends State<Remedy> {
+  MaterialColor remedyDarkBlue = MaterialColor(
+      const Color.fromRGBO(3, 65, 114, 1).value, const <int, Color>{
     50: Color.fromRGBO(3, 65, 114, 0.1),
     100: Color.fromRGBO(3, 65, 114, 0.2),
     200: Color.fromRGBO(3, 65, 114, 0.3),
@@ -35,8 +39,8 @@ class Remedy extends StatelessWidget {
     900: Color.fromRGBO(3, 65, 114, 1),
   });
 
-  MaterialColor remedy_light_blue =
-      MaterialColor(Color.fromRGBO(110, 206, 242, 1).value, <int, Color>{
+  MaterialColor remedyLightBlue = MaterialColor(
+      const Color.fromRGBO(110, 206, 242, 1).value, const <int, Color>{
     50: Color.fromRGBO(110, 206, 242, 0.1),
     100: Color.fromRGBO(110, 206, 242, 0.2),
     200: Color.fromRGBO(110, 206, 242, 0.3),
@@ -49,8 +53,8 @@ class Remedy extends StatelessWidget {
     900: Color.fromRGBO(110, 206, 242, 1),
   });
 
-  MaterialColor remedy_light_green =
-      MaterialColor(Color.fromRGBO(82, 222, 160, 1).value, <int, Color>{
+  MaterialColor remedyLightGreen = MaterialColor(
+      const Color.fromRGBO(82, 222, 160, 1).value, const <int, Color>{
     50: Color.fromRGBO(82, 222, 160, 0.1),
     100: Color.fromRGBO(82, 222, 160, 0.2),
     200: Color.fromRGBO(82, 222, 160, 0.3),
@@ -63,8 +67,8 @@ class Remedy extends StatelessWidget {
     900: Color.fromRGBO(82, 222, 160, 1),
   });
 
-  MaterialColor remedy_sky_blue =
-      MaterialColor(Color.fromRGBO(208, 242, 255, 1).value, <int, Color>{
+  MaterialColor remedySkyBlue = MaterialColor(
+      const Color.fromRGBO(208, 242, 255, 1).value, const <int, Color>{
     50: Color.fromRGBO(208, 242, 255, 0.1),
     100: Color.fromRGBO(208, 242, 255, 0.2),
     200: Color.fromRGBO(208, 242, 255, 0.3),
@@ -77,14 +81,13 @@ class Remedy extends StatelessWidget {
     900: Color.fromRGBO(208, 242, 255, 1),
   });
 
-//tfsasdasd
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 208, 242, 255),
-        primarySwatch: remedy_dark_blue,
+        primarySwatch: remedyDarkBlue,
       ),
       initialRoute:
           initScreen == 0 || initScreen == null ? 'onBoarding' : 'widgetTree',
