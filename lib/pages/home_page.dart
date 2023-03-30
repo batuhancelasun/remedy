@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import '../component/nav_bar.dart';
 import '../component/order.dart';
 import 'account.dart';
-import 'google_maps.dart';
-import 'medicine_description.dart';
+import 'google_maps_page.dart';
+import 'medicine_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
-                    onPressed: () => Get.to(const MedicineDescription()),
+                    onPressed: () => Get.to(const MedicinePage()),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Get.to(const MapsPage()),
+                    onPressed: () => Get.to(const GoogleMapsPage()),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),

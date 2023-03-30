@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:remedy/component/user_credentials.dart';
-import 'package:remedy/pages/medicine_description.dart';
 
 import '../auth.dart';
 import '../component/nav_bar.dart';
+import '../getDatas/datas/user_credentials.dart';
+import 'medicine_page.dart';
 
 class NewHomePage extends StatelessWidget {
   NewHomePage({super.key});
@@ -100,7 +100,7 @@ class NewHomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () => Get.to(const MedicineDescription()),
+                  onPressed: () => Get.to(const MedicinePage()),
                 ),
               ),
               Expanded(
@@ -157,7 +157,7 @@ class NewHomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  onPressed: () => Get.to(const MedicineDescription()),
+                  onPressed: () => Get.to(const MedicinePage()),
                 ),
               ),
               Expanded(
@@ -212,7 +212,7 @@ class NewHomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  onPressed: () => Get.to(const MedicineDescription()),
+                  onPressed: () => Get.to(const MedicinePage()),
                 ),
               ),
               Expanded(
@@ -269,7 +269,7 @@ class NewHomePage extends StatelessWidget {
                           )
                         ]),
                   ),
-                  onPressed: () => Get.to(const MedicineDescription()),
+                  onPressed: () => Get.to(const MedicinePage()),
                 ),
               ),
             ],

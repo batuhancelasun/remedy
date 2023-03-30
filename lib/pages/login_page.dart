@@ -27,14 +27,17 @@ class _LoginPageState extends State<LoginPage> {
       await _authService.signIn(
           _controllerEmail.text, _controllerPassword.text);
     } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
+      setState(
+        () {
+          errorMessage = e.message;
+        },
+      );
     }
   }
 
   @override
   void initState() {
+    super.initState();
     _passwordVisible = false;
   }
 
@@ -46,20 +49,21 @@ class _LoginPageState extends State<LoginPage> {
       obscureText: _passwordVisible,
       controller: controller,
       decoration: InputDecoration(
-          labelText: title,
-          hintText: "Please enter your password.",
-          suffixIcon: IconButton(
-            icon: Icon(
-              _passwordVisible
-                  ? Icons.visibility_outlined
-                  : Icons.visibility_off_outlined,
-            ),
-            onPressed: () {
-              setState(() {
-                _passwordVisible = !_passwordVisible;
-              });
-            },
-          )),
+        labelText: title,
+        hintText: "Please enter your password.",
+        suffixIcon: IconButton(
+          icon: Icon(
+            _passwordVisible
+                ? Icons.visibility_outlined
+                : Icons.visibility_off_outlined,
+          ),
+          onPressed: () {
+            setState(() {
+              _passwordVisible = !_passwordVisible;
+            });
+          },
+        ),
+      ),
     );
   }
 
@@ -79,10 +83,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _errorMessage() {
-    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+    return Text(errorMessage == '' ? '' : 'Humm? $errorMessage');
   }
 
-  Widget _submitButton() {
+  Widget _logInButton() {
     return ElevatedButton(
       onPressed: () {
         signIn();
@@ -93,7 +97,9 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _registerButton() {
     return ElevatedButton(
-      onPressed: () => Get.to(const RegisterPage()),
+      onPressed: () => Get.to(
+        const RegisterPage(),
+      ),
       child: const Text('Register'),
     );
   }
@@ -123,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
             _mailText('Email', _controllerEmail),
             passwordText('Password', _controllerPassword),
             _errorMessage(),
-            _submitButton(),
+            _logInButton(),
             _registerButton(),
             SizedBox(
               height: 300.0,

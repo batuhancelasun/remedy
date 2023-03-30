@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../auth.dart';
-import '../component/user_credentials.dart';
+import '../getDatas/datas/user_credentials.dart';
 import '../widget_tree.dart';
-import 'google_maps.dart';
+import 'google_maps_page.dart';
 import 'home_page.dart';
-import 'medicine_description.dart';
+import 'medicine_page.dart';
 import 'new_home_page.dart';
 import 'onboarding_screen.dart';
 
@@ -102,13 +102,14 @@ class HomePage extends StatelessWidget {
 
   Widget _goToDescription() {
     return ElevatedButton(
-        onPressed: () => Get.to(const MedicineDescription()),
+        onPressed: () => Get.to(const MedicinePage()),
         child: const Text("Go To Description List"));
   }
 
   Widget _goToGPS() {
     return ElevatedButton(
-        onPressed: () => Get.to(const MapsPage()), child: const Text("GPS"));
+        onPressed: () => Get.to(const GoogleMapsPage()),
+        child: const Text("GPS"));
   }
 
   Widget _goToOnBoardingScreen() {
@@ -142,34 +143,35 @@ class HomePage extends StatelessWidget {
         title: _title(),
       ),
       body: FutureBuilder<UserCredentials?>(
-          future: okuUser(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Text('wrong! ${snapshot.error}');
-            } else if (snapshot.hasData) {
-              final okuUser = snapshot.data!;
-              return Column(
-                children: [
-                  buildUser(okuUser),
-                  userUser(okuUser),
-                  _merhaba(),
-                  _userUid(),
-                  _signOutButton(),
-                  _goToDescription(),
-                  _goToGPS(),
-                  _goToOnBoardingScreen(),
-                  _goToNewHomePage(),
-                  _updateName(),
-                  _inputName(),
-                  _goToTestHomePage(),
-                ],
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
+        future: okuUser(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text('wrong! ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            final okuUser = snapshot.data!;
+            return Column(
+              children: [
+                buildUser(okuUser),
+                userUser(okuUser),
+                _merhaba(),
+                _userUid(),
+                _signOutButton(),
+                _goToDescription(),
+                _goToGPS(),
+                _goToOnBoardingScreen(),
+                _goToNewHomePage(),
+                _updateName(),
+                _inputName(),
+                _goToTestHomePage(),
+              ],
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
 }

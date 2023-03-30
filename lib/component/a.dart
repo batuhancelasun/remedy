@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../pages/medicine_page.dart';
 import 'nav_bar.dart';
-import '../pages/medicine_description.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TextButton(
-                    onPressed: () => Get.to(const MedicineDescription()),
+                    onPressed: () => Get.to(const MedicinePage()),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Get.to(const MedicineDescription()),
+                    onPressed: () => Get.to(const MedicinePage()),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),
@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TextButton(
-                    onPressed: () => Get.to(const MedicineDescription()),
+                    onPressed: () => Get.to(const MedicinePage()),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),
@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Get.to(const MedicineDescription()),
+                    onPressed: () => Get.to(const MedicinePage()),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 10),

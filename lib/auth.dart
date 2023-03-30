@@ -23,14 +23,16 @@ class Auth {
     var user = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
 
-    await _firestoreAuth.collection("Person").doc(user.user?.uid).set({
-      'name': name,
-      'surName': surname,
-      'email': email,
-      'idNumber': idNumber,
-      'kanGrubu': bloodType,
-      'gender': gender,
-    });
+    await _firestoreAuth.collection("Person").doc(user.user?.uid).set(
+      {
+        'name': name,
+        'surName': surname,
+        'email': email,
+        'idNumber': idNumber,
+        'kanGrubu': bloodType,
+        'gender': gender,
+      },
+    );
   }
 
   Future<void> signOut() async {
