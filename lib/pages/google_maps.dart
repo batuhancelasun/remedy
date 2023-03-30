@@ -28,7 +28,7 @@ class _MapsPageState extends State<MapsPage> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Get.to(const NewHomePage()),
+          onPressed: () => Get.to(NewHomePage()),
         ),
       ),
       body: StreamBuilder<Set<Pharmacy>>(

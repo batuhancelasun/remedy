@@ -56,7 +56,7 @@ class NavBar extends StatelessWidget {
               color: Color.fromRGBO(3, 65, 114, 1),
             ),
             title: const Text("Home Page"),
-            onTap: () => Get.to(const NewHomePage()),
+            onTap: () => Get.to(NewHomePage()),
           ),
           Divider(),
           ListTile(
