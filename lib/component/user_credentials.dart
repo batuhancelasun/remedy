@@ -5,14 +5,14 @@ class UserCredentials {
       required this.surname,
       required this.gender,
       required this.idNumber,
-      required this.kanGrubu});
+      required this.bloodType});
 
   final String email;
   final String name;
   final String surname;
   final String gender;
   final String idNumber;
-  final String kanGrubu;
+  final String bloodType;
 
   Map<String, dynamic> toJson() => {
         'name': name,
@@ -20,7 +20,7 @@ class UserCredentials {
         'email': email,
         'gender': gender,
         'idNumber': idNumber,
-        'bloodType': kanGrubu,
+        'bloodType': bloodType,
       };
 
   static UserCredentials fromJson(Map<String, dynamic> json) => UserCredentials(
@@ -29,6 +29,6 @@ class UserCredentials {
         email: json['email'],
         gender: json['gender'],
         idNumber: json['idNumber'],
-        kanGrubu: json['kanGrubu'],
+        bloodType: json['bloodType'],
       );
 }
