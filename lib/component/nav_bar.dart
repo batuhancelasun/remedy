@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../auth.dart';
 import '../pages/account.dart';
 import '../pages/google_maps_page.dart';
-import '../pages/home_page_new.dart';
+import '../pages/home_page.dart';
 import '../widget_tree.dart';
 
 class NavBar extends StatelessWidget {
@@ -55,15 +55,15 @@ class NavBar extends StatelessWidget {
               color: Color.fromRGBO(3, 65, 114, 1),
             ),
             title: const Text("Home Page"),
-            onTap: () => Get.to(NewHomePage()),
+            onTap: () => Get.to(const MyHomePage()),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.description,
               color: Color.fromRGBO(82, 222, 160, 1),
             ),
-            title: Text("Descriptions of Medicines"),
+            title: const Text("Descriptions of Medicines"),
             onTap: () {},
           ),
           ListTile(
@@ -81,7 +81,7 @@ class NavBar extends StatelessWidget {
               color: Color.fromRGBO(3, 65, 114, 1),
             ),
             title: const Text("Account"),
-            onTap: () => Get.to(AccountInfo()),
+            onTap: () => Get.to(const AccountInfo()),
           ),
           ListTile(
             leading: const Icon(

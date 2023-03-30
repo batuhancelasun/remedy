@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../component/a.dart';
 import '../getDatas/get_google_maps_data.dart';
-import 'new_home_page.dart';
 
 class GoogleMapsPage extends StatefulWidget {
   const GoogleMapsPage({super.key});
@@ -18,7 +18,7 @@ class _GoogleMapsPageState extends State<GoogleMapsPage> {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
-            onPressed: () => Get.to(NewHomePage()),
+            onPressed: () => Get.to(MyHomePage()),
           ),
         ),
         body: const GetGoogleMapsData());

@@ -8,7 +8,6 @@ import '../widget_tree.dart';
 import 'google_maps_page.dart';
 import 'home_page.dart';
 import 'medicine_page.dart';
-import 'new_home_page.dart';
 import 'onboarding_screen.dart';
 
 // ignore_for_file: body_might_complete_normally_nullable
@@ -142,12 +141,6 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  Widget _goToNewHomePage() {
-    return ElevatedButton(
-        onPressed: () => Get.to(NewHomePage()),
-        child: const Text("Go To New Home Page."));
-  }
-
   Widget _goToTestHomePage() {
     return ElevatedButton(
         onPressed: () => Get.to(MyHomePage()),
@@ -159,8 +152,8 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.menu), //Menü ayarlanacak.
-          onPressed: () => Get.to(HomePage()),
+          icon: const Icon(Icons.arrow_back_ios), //Menü ayarlanacak.
+          onPressed: () => Get.to(MyHomePage()),
         ),
         centerTitle: true,
         title: _title(),
@@ -169,7 +162,9 @@ class _HomePageState extends State<HomePage>
         future: _fetch(),
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const Text('Wait');
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
           return Text('mail:  $myEmail isim:  $myName  blood: $myBloodType');
         },

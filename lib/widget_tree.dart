@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'auth.dart';
+import 'component/a.dart';
 import 'pages/login_page.dart';
-import 'pages/old_home_page.dart';
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class _WidgetTreeState extends State<WidgetTree> {
       stream: Auth().authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return HomePage();
+          return const MyHomePage();
         } else {
           return const LoginPage();
         }
