@@ -6,8 +6,8 @@ import '../auth.dart';
 import '../pages/account.dart';
 import '../pages/google_maps.dart';
 import '../pages/home_page_new.dart';
-import '../pages/medicine_description.dart';
 import '../widget_tree.dart';
+import 'medicine_description_details.dart';
 
 class NavBar extends StatelessWidget {
   NavBar({super.key});
@@ -38,16 +38,17 @@ class NavBar extends StatelessWidget {
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text(
+            accountName: const Text(
               "Tahir Furkan Sarıdiken",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
             ),
             accountEmail: Text(user?.email ?? 'User email'),
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage("images/navbar_background.png"),
-              fit: BoxFit.cover,
-            )),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("images/navbar_background.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           ListTile(
             leading: const Icon(
@@ -57,14 +58,14 @@ class NavBar extends StatelessWidget {
             title: const Text("Home Page"),
             onTap: () => Get.to(const NewHomePage()),
           ),
-          const Divider(),
+          Divider(),
           ListTile(
-            leading: const Icon(
+            leading: Icon(
               Icons.description,
               color: Color.fromRGBO(82, 222, 160, 1),
             ),
-            title: const Text("Descriptions of Medicines"),
-            onTap: () => Get.to(const MedicineDescription()),
+            title: Text("Descriptions of Medicines"),
+            onTap: () => Get.to(const MedicineDescriptionDetails()),
           ),
           ListTile(
             leading: const Icon(
