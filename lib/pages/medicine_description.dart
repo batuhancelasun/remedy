@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../component/description_list.dart';
 import '../component/medicine_description_details.dart';
-import 'home_page.dart';
+import 'old_home_page.dart';
 
 class MedicineDescription extends StatelessWidget {
   const MedicineDescription({super.key});
