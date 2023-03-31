@@ -307,7 +307,7 @@ class _AccountInfoState extends State<AccountInfo> {
                   controller: _inputNameController,
                   onChanged: (value) => _updateName,
                   decoration:
-                      InputDecoration(label: Text("Current: " + "$myName")),
+                      InputDecoration(label: Text("Current: " "$myName")),
                 ),
                 _updateName()
               ],
@@ -318,7 +318,7 @@ class _AccountInfoState extends State<AccountInfo> {
                   controller: _inputLastNameController,
                   onChanged: (value) => _updateLastName,
                   decoration:
-                      InputDecoration(label: Text("Current: " + "$myLastName")),
+                      InputDecoration(label: Text("Current: " "$myLastName")),
                 ),
                 _updateLastName()
               ],
@@ -329,7 +329,7 @@ class _AccountInfoState extends State<AccountInfo> {
                   controller: _inputEmailController,
                   onChanged: (value) => _updateEmail,
                   decoration:
-                      InputDecoration(label: Text("Current: " + "$myEmail")),
+                      InputDecoration(label: Text("Current: " "$myEmail")),
                 ),
                 _updateEmail()
               ],
@@ -340,7 +340,7 @@ class _AccountInfoState extends State<AccountInfo> {
                   controller: _inputIdNumberController,
                   onChanged: (value) => _updateIdNumber,
                   decoration:
-                      InputDecoration(label: Text("Current: " + "$myIdNumber")),
+                      InputDecoration(label: Text("Current: " "$myIdNumber")),
                 ),
                 _updateIdNumber()
               ],
@@ -540,7 +540,7 @@ class _AccountInfoState extends State<AccountInfo> {
                                 edit = true;
                               });
                             },
-                            child: Text("Edit Profile"))
+                            child: const Text("Edit Profile"))
                         : Container()
                   ],
                 ),
