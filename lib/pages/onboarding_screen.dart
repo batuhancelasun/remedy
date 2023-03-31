@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../component/onboarding_page.dart';
 
+// ignore: must_be_immutable
 class OnBoardingScreen extends StatelessWidget {
   OnBoardingScreen({Key? key}) : super(key: key);
 

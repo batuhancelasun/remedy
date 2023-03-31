@@ -23,9 +23,6 @@ class _GetRegisterDataState extends State<GetRegisterData> {
   final TextEditingController _controllerIdNumber = TextEditingController();
   final TextEditingController _controllerGender = TextEditingController();
   final TextEditingController _controllerBloodType = TextEditingController();
-  final TextEditingController _controllerCardNumber = TextEditingController();
-  final TextEditingController _controllerExpireDate = TextEditingController();
-  final TextEditingController _controllerCvcNo = TextEditingController();
 
   late bool _passwordVisible;
 

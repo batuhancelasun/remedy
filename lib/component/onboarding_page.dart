@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../widget_tree.dart';
 import 'rounded_button.dart';
 
+// ignore: must_be_immutable
 class OnBoardingPage extends StatelessWidget {
   OnBoardingPage(
       {Key? key,
