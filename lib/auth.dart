@@ -9,8 +9,6 @@ class Auth {
 
   User? get currentUser => _firebaseAuth.currentUser;
 
-  // User? get currentUserFirestore => _firestoreAuth.collection('Person').doc(currentUser?.uid);
-
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
   Future<void> signIn(String email, String password) async {
@@ -29,7 +27,7 @@ class Auth {
         'surName': surname,
         'email': email,
         'idNumber': idNumber,
-        'kanGrubu': bloodType,
+        'bloodType': bloodType,
         'gender': gender,
       },
     );
