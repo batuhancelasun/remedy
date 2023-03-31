@@ -37,6 +37,7 @@ class _AccountInfoState extends State<AccountInfo> {
   final TextEditingController _inputBloodTypeController =
       TextEditingController();
 
+  // ignore: body_might_complete_normally_nullable
   Future<UserCredentials?> userProfile() async {
     final docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
     final snaphot = await docUser.get();
@@ -374,8 +375,7 @@ class _AccountInfoState extends State<AccountInfo> {
           _buildSingleContainer(startText: "First Name: ", endText: "$myName"),
           _buildSingleContainer(
               startText: "Last Name: ", endText: "$myLastName"),
-          _buildSingleContainer(
-              startText: "E-mail Address: ", endText: "$myEmail"),
+          _buildSingleContainer(startText: "E-mail: ", endText: "$myEmail"),
           _buildSingleContainer(
               startText: "ID Number: ", endText: "$myIdNumber"),
           _buildSingleContainer(

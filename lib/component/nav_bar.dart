@@ -10,9 +10,14 @@ import '../pages/home_page.dart';
 import '../pages/medicine_page.dart';
 import '../widget_tree.dart';
 
-class NavBar extends StatelessWidget {
-  NavBar({super.key});
+class NavBar extends StatefulWidget {
+  const NavBar({super.key});
 
+  @override
+  State<NavBar> createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
   final User? user = Auth().currentUser;
 
   Future<void> signOut() async {
@@ -21,11 +26,15 @@ class NavBar extends StatelessWidget {
   }
 
   final TextEditingController name = TextEditingController();
+
   final TextEditingController lastname = TextEditingController();
+
   final TextEditingController email = TextEditingController();
 
   String? myEmail;
+
   String? myName;
+
   String? myLastName;
 
   _fetch() async {
@@ -43,13 +52,6 @@ class NavBar extends StatelessWidget {
         },
       );
     }
-  }
-
-  Widget _signOutButton() {
-    return ElevatedButton(
-      onPressed: signOut,
-      child: const Text('Sign Out'),
-    );
   }
 
   @override
@@ -70,7 +72,8 @@ class NavBar extends StatelessWidget {
                 return UserAccountsDrawerHeader(
                   accountName: Text(
                     "$myName" " " "$myLastName",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 17),
                   ),
                   accountEmail: Text("$myEmail"),
                   decoration: const BoxDecoration(
