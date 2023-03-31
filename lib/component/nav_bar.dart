@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import '../auth.dart';
 import '../pages/account.dart';
 import '../pages/google_maps_page.dart';
 import '../pages/home_page.dart';
+import '../pages/medicine_page.dart';
 import '../widget_tree.dart';
 
 class NavBar extends StatelessWidget {
@@ -18,8 +20,29 @@ class NavBar extends StatelessWidget {
     Get.to(const WidgetTree());
   }
 
-  Widget get _userUid {
-    return Text(user?.email ?? 'User email');
+  final TextEditingController name = TextEditingController();
+  final TextEditingController lastname = TextEditingController();
+  final TextEditingController email = TextEditingController();
+
+  String? myEmail;
+  String? myName;
+  String? myLastName;
+
+  _fetch() async {
+    final firebaseUser = Auth().currentUser;
+    if (firebaseUser != null) {
+      await FirebaseFirestore.instance
+          .collection('Person')
+          .doc(firebaseUser.uid)
+          .get()
+          .then(
+        (ds) {
+          myEmail = ds.data()!['email'];
+          myName = ds.data()!['name'];
+          myLastName = ds.data()!['surName'];
+        },
+      );
+    }
   }
 
   Widget _signOutButton() {
@@ -36,19 +59,28 @@ class NavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-          UserAccountsDrawerHeader(
-            accountName: const Text(
-              "Tahir Furkan Sarıdiken",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-            ),
-            accountEmail: Text(user?.email ?? 'User email'),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("images/navbar_background.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          FutureBuilder(
+              future: _fetch(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState != ConnectionState.done) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return UserAccountsDrawerHeader(
+                  accountName: Text(
+                    "$myName" " " "$myLastName",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                  ),
+                  accountEmail: Text("$myEmail"),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("images/navbar_background.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              }),
           ListTile(
             leading: const Icon(
               Icons.home,
@@ -64,7 +96,7 @@ class NavBar extends StatelessWidget {
               color: Color.fromRGBO(82, 222, 160, 1),
             ),
             title: const Text("Descriptions of Medicines"),
-            onTap: () {},
+            onTap: () => Get.to(const MedicinePage()),
           ),
           ListTile(
             leading: const Icon(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../component/a.dart';
 import '../getDatas/get_medlist_data.dart';
+import 'home_page.dart';
 
 class MedicinePage extends StatefulWidget {
   const MedicinePage({super.key});

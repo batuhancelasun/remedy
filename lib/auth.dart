@@ -16,8 +16,15 @@ class Auth {
         email: email, password: password);
   }
 
-  Future<void> createUser(String name, String surname, String idNumber,
-      String bloodType, String gender, String email, String password) async {
+  Future<void> createUser(
+    String name,
+    String surname,
+    String idNumber,
+    String bloodType,
+    String gender,
+    String email,
+    String password,
+  ) async {
     var user = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
 
