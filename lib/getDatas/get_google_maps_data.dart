@@ -19,7 +19,7 @@ Stream<Set<Pharmacy>> getMarkerData() => FirebaseFirestore.instance
         snapshot.docs.map((doc) => Pharmacy.fromJson(doc.data())).toSet());
 
 Marker buildMarker(Pharmacy pharmacy) => Marker(
-      markerId: MarkerId(pharmacy.id.toString()),
+      markerId: MarkerId(pharmacy.id),
       position: LatLng(pharmacy.latitude, pharmacy.longitude),
       infoWindow: InfoWindow(
         title: pharmacy.name,
@@ -41,8 +41,8 @@ class _GetGoogleMapsDataState extends State<GetGoogleMapsData> {
           return GoogleMap(
             mapType: MapType.normal,
             initialCameraPosition: const CameraPosition(
-              target: LatLng(39.925533, 32.866287),
-              zoom: 13.0,
+              target: LatLng(41.015137, 28.979530),
+              zoom: 8.5,
             ),
             onMapCreated: (GoogleMapController controller) {
               myController = controller;

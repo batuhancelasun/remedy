@@ -27,6 +27,15 @@ class _AccountInfoState extends State<AccountInfo> {
   final TextEditingController gender = TextEditingController();
   final TextEditingController bloodtype = TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final TextEditingController _inputNameController = TextEditingController();
+  final TextEditingController _inputLastNameController =
+      TextEditingController();
+  final TextEditingController _inputEmailController = TextEditingController();
+  final TextEditingController _inputIdNumberController =
+      TextEditingController();
+  final TextEditingController _inputGenderController = TextEditingController();
+  final TextEditingController _inputBloodTypeController =
+      TextEditingController();
 
   Future<UserCredentials?> userProfile() async {
     final docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
@@ -64,12 +73,200 @@ class _AccountInfoState extends State<AccountInfo> {
     }
   }
 
+  Widget _updateName() {
+    return ElevatedButton(
+      child: const Text('Update Your First Name'),
+      onPressed: () {
+        var docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+        docUser.update(
+          {
+            'name': _inputNameController.text,
+          },
+        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("First Name updated!")));
+      },
+    );
+  }
+
+  Widget _updateLastName() {
+    return ElevatedButton(
+      child: const Text('Update Your Last Name'),
+      onPressed: () {
+        var docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+        docUser.update(
+          {
+            'surName': _inputLastNameController.text,
+          },
+        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Last Name updated!")));
+      },
+    );
+  }
+
+  Widget _updateIdNumber() {
+    return ElevatedButton(
+      child: const Text('Update Your ID Number'),
+      onPressed: () {
+        var docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+        docUser.update(
+          {
+            'idNumber': _inputIdNumberController.text,
+          },
+        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("ID Number updated!")));
+      },
+    );
+  }
+
+  Widget _updateGender() {
+    return ElevatedButton(
+      child: const Text('Update Your Gender'),
+      onPressed: () {
+        setState(() {
+          var docUser =
+              _firestoreAuth.collection('Person').doc(currentUser?.uid);
+          docUser.update(
+            {
+              'gender': _inputGenderController.text,
+            },
+          );
+        });
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Gender updated!")));
+      },
+    );
+  }
+
+  Widget _updateEmail() {
+    return ElevatedButton(
+      child: const Text('Update Your E-mail Address'),
+      onPressed: () {
+        var docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+        docUser.update(
+          {
+            'email': _inputEmailController.text,
+          },
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("E-mail Adress updated!")));
+      },
+    );
+  }
+
+  Widget _updateBloodType() {
+    return ElevatedButton(
+      child: const Text('Update Your Blood Type'),
+      onPressed: () {
+        var docUser = _firestoreAuth.collection('Person').doc(currentUser?.uid);
+        docUser.update(
+          {
+            'bloodType': _inputBloodTypeController.text,
+          },
+        );
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text("Blood Type updated!")));
+      },
+    );
+  }
+
+  String? newBloodType;
+  Widget _updateDropdownBloodType() {
+    return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) => DropdownButton(
+        icon: const Padding(
+          padding: EdgeInsets.only(left: 84.5),
+          child: Icon(Icons.arrow_circle_down),
+        ),
+        onChanged: (String? newValue) {
+          _inputBloodTypeController.text = newValue ?? '';
+          setState(() {
+            newBloodType = newValue!;
+          });
+        },
+        hint: Text("$myBloodType"),
+        items: const [
+          DropdownMenuItem<String>(
+            value: 'A+',
+            child: Text('A+ (A Rh Positive)'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'A-',
+            child: Text('A- (A Rh Negative)'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'B+',
+            child: Text('B+ (B Rh Positive)'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'B-',
+            child: Text('B- (B Rh Negative)'),
+          ),
+          DropdownMenuItem<String>(
+            value: '0+',
+            child: Text('0+ (0 Rh Positive)'),
+          ),
+          DropdownMenuItem<String>(
+            value: '0-',
+            child: Text('0- (0 Rh Negative)'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'AB+',
+            child: Text('AB+ (AB Rh Positive)'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'AB-',
+            child: Text('AB- (AB Rh Negative)'),
+          ),
+        ].toList(),
+        value: newBloodType,
+      ),
+    );
+  }
+
+  String? newGender;
+  Widget _updateDropdownGender() {
+    return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) => DropdownButton(
+        icon: const Padding(
+          padding: EdgeInsets.only(left: 84.5),
+          child: Icon(Icons.arrow_circle_down),
+        ),
+        onChanged: (String? newValue) {
+          _inputGenderController.text = newValue ?? '';
+          _updateGender();
+          setState(() {
+            newGender = newValue!;
+          });
+        },
+        hint: Text("$myGender"),
+        items: const [
+          DropdownMenuItem<String>(
+            value: 'Male',
+            child: Text('Male'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'Female',
+            child: Text('Female'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'Other',
+            child: Text('Other'),
+          ),
+        ].toList(),
+        value: newGender,
+      ),
+    );
+  }
+
   Widget _buildSingleContainer(
       {required String startText, required String endText}) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       child: Container(
-        height: 55,
+        height: 48,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
             color: edit == false
@@ -97,33 +294,101 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  Widget _buildUpdateInfo() {
+    return SingleChildScrollView(
+      child: SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              children: [
+                TextFormField(
+                  controller: _inputNameController,
+                  onChanged: (value) => _updateName,
+                  decoration:
+                      InputDecoration(label: Text("Current: " + "$myName")),
+                ),
+                _updateName()
+              ],
+            ),
+            Column(
+              children: [
+                TextFormField(
+                  controller: _inputLastNameController,
+                  onChanged: (value) => _updateLastName,
+                  decoration:
+                      InputDecoration(label: Text("Current: " + "$myLastName")),
+                ),
+                _updateLastName()
+              ],
+            ),
+            Column(
+              children: [
+                TextFormField(
+                  controller: _inputEmailController,
+                  onChanged: (value) => _updateEmail,
+                  decoration:
+                      InputDecoration(label: Text("Current: " + "$myEmail")),
+                ),
+                _updateEmail()
+              ],
+            ),
+            Column(
+              children: [
+                TextFormField(
+                  controller: _inputIdNumberController,
+                  onChanged: (value) => _updateIdNumber,
+                  decoration:
+                      InputDecoration(label: Text("Current: " + "$myIdNumber")),
+                ),
+                _updateIdNumber()
+              ],
+            ),
+            Column(
+              children: [_updateDropdownGender(), _updateGender()],
+            ),
+            Column(
+              children: [_updateDropdownBloodType(), _updateBloodType()],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  bool isMale = false;
+  bool edit = false;
+
+  Widget _buildContainerPart() {
+    if (myGender == "Male") {
+      isMale = true;
+    } else {
+      isMale = false;
+    }
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildSingleContainer(startText: "First Name: ", endText: "$myName"),
+          _buildSingleContainer(
+              startText: "Last Name: ", endText: "$myLastName"),
+          _buildSingleContainer(
+              startText: "E-mail Address: ", endText: "$myEmail"),
+          _buildSingleContainer(
+              startText: "ID Number: ", endText: "$myIdNumber"),
+          _buildSingleContainer(
+              startText: "Blood Type: ", endText: "$myBloodType"),
+          _buildSingleContainer(startText: "Gender: ", endText: "$myGender"),
+        ],
+      ),
+    );
+  }
+
   Future<void> signOut() async {
     await Auth().signOut();
     Get.to(const WidgetTree());
-  }
-
-  void validation() async {
-    if (name.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("First Name field is empty!")));
-    } else if (lastname.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Last Name field is empty!")));
-    } else if (email.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("E-mail field is empty!")));
-    } else if (idnumber.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("ID Number field is empty!")));
-    } else if (gender.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Gender field is empty!")));
-    } else if (bloodtype.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Blood Type field is empty!")));
-    } else {
-      userDetailUpdate();
-    }
   }
 
   bool centerCircle = false;
@@ -150,7 +415,6 @@ class _AccountInfoState extends State<AccountInfo> {
     });
   }
 
-  bool edit = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -174,7 +438,9 @@ class _AccountInfoState extends State<AccountInfo> {
           edit == true
               ? IconButton(
                   onPressed: () {
-                    validation();
+                    setState(() {
+                      edit = false;
+                    });
                   },
                   icon: const Icon(Icons.check_rounded))
               : IconButton(
@@ -196,61 +462,88 @@ class _AccountInfoState extends State<AccountInfo> {
             }
             return SingleChildScrollView(
               child: Container(
-                padding: const EdgeInsets.all(5),
-                child: Column(children: [
-                  SizedBox(
-                    width: 180,
-                    height: 250,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(200),
-                        child: const Image(
-                          image: AssetImage("images/male_profile_picture.png"),
-                        )),
-                  ),
-
-                  _buildSingleContainer(
-                      startText: "First Name: ", endText: "$myName"),
-                  _buildSingleContainer(
-                      startText: "Last Name: ", endText: "$myLastName"),
-                  _buildSingleContainer(
-                      startText: "E-mail Address: ", endText: "$myEmail"),
-                  _buildSingleContainer(
-                      startText: "ID Number: ", endText: "$myIdNumber"),
-                  _buildSingleContainer(
-                      startText: "Blood Type: ", endText: "$myBloodType"),
-                  _buildSingleContainer(
-                      startText: "Gender: ", endText: "$myGender"),
-
-                  // ignore: prefer_const_constructors
-
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        edit = true;
-                      });
-                    },
-                    style: const ButtonStyle(
-                        backgroundColor: /*edit == true ?*/
-                            MaterialStatePropertyAll(
-                                Color.fromRGBO(82, 222, 160, 1)),
-                        side: MaterialStatePropertyAll(BorderSide.none),
-                        shape: MaterialStatePropertyAll(StadiumBorder())),
-                    // ignore: sort_child_properties_last
-                    child: const Text(
-                      "Edit Profile",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
+                height: 552,
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Stack(
+                      children: [
+                        SizedBox(
+                          height: 130,
+                          width: double.infinity,
+                          child: isMale == true
+                              ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  children: [
+                                    const CircleAvatar(
+                                      maxRadius: 65,
+                                      backgroundImage: AssetImage(
+                                          "images/male_profile_picture.png"),
+                                    ),
+                                  ],
+                                )
+                              : Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  // ignore: prefer_const_literals_to_create_immutables
+                                  children: [
+                                    const CircleAvatar(
+                                      maxRadius: 65,
+                                      backgroundImage: AssetImage(
+                                          "images/female_profile_picture.png"),
+                                    ),
+                                  ],
+                                ),
+                        ),
+                        edit == true
+                            ? Padding(
+                                padding: EdgeInsets.only(
+                                    left: MediaQuery.of(context)
+                                            .viewPadding
+                                            .left +
+                                        220,
+                                    top: MediaQuery.of(context)
+                                            .viewPadding
+                                            .left +
+                                        110),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ]),
+                    SizedBox(
+                      height: 374,
+                      width: double.infinity,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              child: edit == true
+                                  ? _buildUpdateInfo()
+                                  : _buildContainerPart(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    edit == false
+                        ? ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                edit = true;
+                              });
+                            },
+                            child: Text("Edit Profile"))
+                        : Container()
+                  ],
+                ),
               ),
             );
           }),
