@@ -24,7 +24,7 @@
   
 ## About the app
 
-<i>
+
 The healthcare application we have developed is designed to provide users with a convenient and easy-to-use platform for managing their medications. With this app, users can order their medications directly from their phone or tablet, eliminating the need to visit a pharmacy in person. In addition, the app provides real-time information about pharmacy stocks, ensuring that users can quickly and easily locate the medications they need. To further support users in managing their medications, the app also provides access to drug leaflets, which offer important information about the medications, including potential side effects and dosing instructions. Overall, this healthcare application is a powerful tool for anyone looking to simplify the process of managing their medications, making it easier to stay healthy and in control of their healthcare.
 
 
@@ -55,7 +55,7 @@ flutter run
 
 # Demo Gif
 
-<img src="https://user-images.githubusercontent.com/80282830/229625100-778f1408-e14e-4ee9-b25d-1a3824967ea3.gif" style="width:230px;height:500px;" >
+<img src="https://user-images.githubusercontent.com/80282830/229631557-f5f86fdd-d6e2-4fa2-b91c-8c9d8c38d6cc.gif" style="width:300px;height:650px;" >
 
 
 
