@@ -55,7 +55,7 @@ flutter run
 
 # Demo Gif
 
-<img src="https://user-images.githubusercontent.com/80282830/229625100-778f1408-e14e-4ee9-b25d-1a3824967ea3.gif" style="width:200px;height:400px;" >
+<img src="https://user-images.githubusercontent.com/80282830/229625100-778f1408-e14e-4ee9-b25d-1a3824967ea3.gif" style="width:230px;height:500px;" >
 
 
 
