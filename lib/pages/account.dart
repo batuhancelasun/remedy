@@ -20,6 +20,9 @@ class _AccountInfoState extends State<AccountInfo> {
 
   final FirebaseFirestore _firestoreAuth = FirebaseFirestore.instance;
 
+  //We have created TextEditingControllers to control the current user's data.
+  //We need to control the data from Firestore & Firebase to show this user information to the user and let them edit their informations.
+
   final TextEditingController name = TextEditingController();
   final TextEditingController lastname = TextEditingController();
   final TextEditingController email = TextEditingController();
@@ -149,6 +152,7 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //This function let you update your e-mail on firebase via elevated button press
   Widget _updateEmail() {
     return ElevatedButton(
       child: const Text('Update Your E-mail Address'),
@@ -165,6 +169,7 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //This function let you update your blood type on firebase via elevated button press
   Widget _updateBloodType() {
     return ElevatedButton(
       child: const Text('Update Your Blood Type'),
@@ -181,6 +186,7 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //This function let you choose your blood type from dropdown menu and update it with the elevated button above.
   String? newBloodType;
   Widget _updateDropdownBloodType() {
     return StatefulBuilder(
@@ -235,6 +241,7 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //This function let you choose your gender from dropdown menu and update it with the elevated button above.
   String? newGender;
   Widget _updateDropdownGender() {
     return StatefulBuilder(
@@ -270,6 +277,9 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //We created the Container model to show user information on the screen.
+  //This model let us show the informations more easily.
+  //We won't write the code block again and again with the help of this model.
   Widget _buildSingleContainer(
       {required String startText, required String endText}) {
     return Card(
@@ -303,12 +313,17 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //We created this model to update the user informations from Firestore & Firebase easily.
+  //We don't need to call the update again and again in our main widget.
   Widget _buildUpdateInfo() {
     return SingleChildScrollView(
       child: SizedBox(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            //We use TextFormField to update user name information.
+            //This is the model of the TextFormField.
+            //When user enter the new name information we call the _updateName() function to update information from database.
             Column(
               children: [
                 TextFormField(
@@ -320,6 +335,9 @@ class _AccountInfoState extends State<AccountInfo> {
                 _updateName()
               ],
             ),
+            //We use TextFormField to update user last name information.
+            //This is the model of the TextFormField.
+            //When user enter the new last name information we call the _updateLastName() function to update information from database.
             Column(
               children: [
                 TextFormField(
@@ -331,6 +349,9 @@ class _AccountInfoState extends State<AccountInfo> {
                 _updateLastName()
               ],
             ),
+            //We use TextFormField to update user e-mail information.
+            //This is the model of the TextFormField.
+            //When user enter the new e-mail information we call the _updateEmail() function to update information from database.
             Column(
               children: [
                 TextFormField(
@@ -342,6 +363,9 @@ class _AccountInfoState extends State<AccountInfo> {
                 _updateEmail()
               ],
             ),
+            //We use TextFormField to update user id number information.
+            //This is the model of the TextFormField.
+            //When user enter the new id number information we call the _updateIdNumber() function to update information from database.
             Column(
               children: [
                 TextFormField(
@@ -353,9 +377,17 @@ class _AccountInfoState extends State<AccountInfo> {
                 _updateIdNumber()
               ],
             ),
+            //We use 2 different functions to update user gender information.
+            //This is the model of the update section.
+            //First we call _updateDropdownGender to let user select the new gender information
+            //then we call the _updateGender() function to update information from database.
             Column(
               children: [_updateDropdownGender(), _updateGender()],
             ),
+            //We use 2 different functions to update user blood type information.
+            //This is the model of the update section.
+            //First we call _updateDropdownBloodType to let user select the new blood type information
+            //then we call the _updateBloodType() function to update information from database.
             Column(
               children: [_updateDropdownBloodType(), _updateBloodType()],
             ),
@@ -365,9 +397,13 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //When updating the gender section we control the option with this bool variable.
   bool isMale = false;
+  //With this bool variable we control if the editing is on or not.
   bool edit = false;
 
+  //If edit button has clicked and editing is on, user will see this model to edit their informations.
+  //We use our _buildSingleContainer function to edit informations easily.
   Widget _buildContainerPart() {
     if (myGender == "Male") {
       isMale = true;
@@ -394,33 +430,10 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //With this function we let users to sign out from account page.
   Future<void> signOut() async {
     await Auth().signOut();
     Get.to(const WidgetTree());
-  }
-
-  bool centerCircle = false;
-  void userDetailUpdate() async {
-    setState(() {
-      centerCircle = true;
-    });
-    FirebaseFirestore.instance
-        .collection("Person")
-        .doc(currentUser?.uid)
-        .update({
-      'name': name.text,
-      'surName': lastname.text,
-      'email': email.text,
-      'idNumber': idnumber.text,
-      'bloodType': bloodtype.text,
-      'gender': gender.text,
-    });
-    setState(() {
-      centerCircle = false;
-    });
-    setState(() {
-      edit = false;
-    });
   }
 
   @override
@@ -429,6 +442,7 @@ class _AccountInfoState extends State<AccountInfo> {
       key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
+        //Button is changing depends on the edit is true or false.
         leading: edit == true
             ? IconButton(
                 onPressed: () {
@@ -481,6 +495,7 @@ class _AccountInfoState extends State<AccountInfo> {
                         SizedBox(
                           height: 130,
                           width: double.infinity,
+                          //Profile picture will set to the user depends on their gender.
                           child: isMale == true
                               ? Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -541,6 +556,7 @@ class _AccountInfoState extends State<AccountInfo> {
                         ],
                       ),
                     ),
+                    //Edit Profile button show or hide
                     edit == false
                         ? ElevatedButton(
                             onPressed: () {

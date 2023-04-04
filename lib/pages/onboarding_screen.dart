@@ -8,6 +8,7 @@ class OnBoardingScreen extends StatelessWidget {
 
   PageController controller = PageController(initialPage: 0);
 
+  //We use this function to change the screen.
   void changeScreen(int nextScreenNo) {
     controller.animateToPage(nextScreenNo,
         duration: const Duration(milliseconds: 500),
@@ -20,8 +21,10 @@ class OnBoardingScreen extends StatelessWidget {
       backgroundColor: const Color.fromRGBO(208, 242, 255, 1),
       body: PageView(
         controller: controller,
-        //physics: const NeverScrollableScrollPhysics(), //kaydırarak geçme
+        //User has to click next or skip to change screen. They can not scroll the screen and change it.
+        physics: const NeverScrollableScrollPhysics(),
         children: [
+          //We use our onboarding page model to create our onboarding screen easily.
           OnBoardingPage(
             image: Image.asset("images/remedy.png"),
             title: "Welcome",

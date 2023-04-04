@@ -79,6 +79,7 @@ class OnBoardingPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              //We used Visibility widget to hide or show to buttons depends on the page number.
               Visibility(
                 visible: (currentScreenNo == 2 ? false : true),
                 child: RoundedButton(

@@ -35,6 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String? myName;
 
+  //We need current user's name to say welcome :)
   _fetch() async {
     final firebaseUser = Auth().currentUser;
     if (firebaseUser != null) {
@@ -68,9 +69,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            //Banner image set
             Image.asset(
               "images/banner.png",
             ),
+            //Welcoming the user on the top of the page.
             FutureBuilder(
                 future: _fetch(),
                 builder: (context, snapshot) {
@@ -94,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   );
                 }),
+            //First 2 buttons of the home page.
             Expanded(
               child: Center(
                 child: Row(
@@ -176,6 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            //The other 2 buttons of the home page.
             Expanded(
               child: Center(
                 child: Row(

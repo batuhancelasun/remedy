@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/onboarding_screen.dart';
 import 'widget_tree.dart';
 
+//Set this variable and function to check if the user has seen the onboarding screen.
 int? initScreen;
 
 Future<void> main() async {
@@ -24,6 +25,8 @@ class Remedy extends StatefulWidget {
   State<Remedy> createState() => _RemedyState();
 }
 
+//These materialcolors is used for set the main colors of the app to the spesific names.
+//Then we can use it easily wherever we want in the project.
 class _RemedyState extends State<Remedy> {
   MaterialColor remedyDarkBlue = MaterialColor(
       const Color.fromRGBO(3, 65, 114, 1).value, const <int, Color>{
@@ -89,6 +92,8 @@ class _RemedyState extends State<Remedy> {
         scaffoldBackgroundColor: const Color.fromARGB(255, 208, 242, 255),
         primarySwatch: remedyDarkBlue,
       ),
+      //If user has seen the onboarding screen route redirect them to the widget tree.
+      //If user has not seen it, route redirect them to the onboarding screen.
       initialRoute:
           initScreen == 0 || initScreen == null ? 'onBoarding' : 'widgetTree',
       routes: {

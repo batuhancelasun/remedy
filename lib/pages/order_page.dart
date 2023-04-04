@@ -6,6 +6,9 @@ import 'home_page.dart';
 class OrderPage extends StatelessWidget {
   const OrderPage({super.key});
 
+  //Order page will be added with the next version of the app.
+  //We will add stock and easy pay functions to let users order their medicines easily.
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
