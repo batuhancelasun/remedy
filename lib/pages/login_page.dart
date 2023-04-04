@@ -17,11 +17,15 @@ String? errorMessage = '';
 Auth _authService = Auth();
 
 class _LoginPageState extends State<LoginPage> {
+  //  all needed textcontrollers.
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
+  //  needed for visible button.
   late bool _passwordVisible = true;
 
+  //  this is our signin method it connects with our Auth class
+  //  and loggin in with firebase's "signInWithEmailAndPassword" method.
   Future<void> signIn() async {
     try {
       await _authService.signIn(
@@ -40,6 +44,11 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     _passwordVisible = true;
   }
+
+  /*
+      all widgets from below are just textfields and buttons, 
+      we need them to create a user.
+   */
 
   Widget passwordText(
     String title,
@@ -104,6 +113,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  //  we add our widgets to listview and show it to user.
   @override
   Widget build(BuildContext context) {
     return Scaffold(

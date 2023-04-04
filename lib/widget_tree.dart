@@ -11,6 +11,8 @@ class WidgetTree extends StatefulWidget {
   State<WidgetTree> createState() => _WidgetTreeState();
 }
 
+//  If we can login go to Homepage
+//  If not stay in login page.
 class _WidgetTreeState extends State<WidgetTree> {
   @override
   Widget build(BuildContext context) {

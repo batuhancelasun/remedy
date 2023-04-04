@@ -1,3 +1,4 @@
+//  to get Pharmacy location from Firestore i created a json mapper.
 class Pharmacy {
   Pharmacy({
     required this.id,

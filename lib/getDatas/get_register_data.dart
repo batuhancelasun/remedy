@@ -15,6 +15,7 @@ class GetRegisterData extends StatefulWidget {
 Auth _authService = Auth();
 String? errorMessage = '';
 
+//  all needed textcontrollers.
 class _GetRegisterDataState extends State<GetRegisterData> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -24,8 +25,12 @@ class _GetRegisterDataState extends State<GetRegisterData> {
   final TextEditingController _controllerGender = TextEditingController();
   final TextEditingController _controllerBloodType = TextEditingController();
 
+  //  needed for visible button.
   late bool _passwordVisible = false;
 
+  //  this is our register method it connects with our Auth class and creates an user
+  //  with firebase's "createUserWithEmailAndPassword" method. Inside the Auth class we defined needed variables so
+  //  given datas automatically creates a user in Authentication page and Firestore database as named 'Person' collection.
   Future<void> register() async {
     try {
       await _authService.createUser(
@@ -44,14 +49,28 @@ class _GetRegisterDataState extends State<GetRegisterData> {
     }
   }
 
-  Widget _errorMessage() {
-    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
-  }
-
   @override
   void initState() {
     super.initState();
     _passwordVisible = false;
+  }
+
+  /*
+      all widgets from below are just textfields and buttons, 
+      we need them to create a user.
+   */
+  
+  Widget _registerButton() {
+    return ElevatedButton(
+      onPressed: () {
+        register();
+      },
+      child: const Text('Register'),
+    );
+  }
+
+  Widget _errorMessage() {
+    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
   }
 
   Widget _mailText(
@@ -96,7 +115,6 @@ class _GetRegisterDataState extends State<GetRegisterData> {
 
   String? selectedBloodType;
   Widget _bloodTypeButton(
-    String title,
     TextEditingController controller,
   ) {
     return DropdownButton(
@@ -215,15 +233,7 @@ class _GetRegisterDataState extends State<GetRegisterData> {
     );
   }
 
-  Widget _registerButton() {
-    return ElevatedButton(
-      onPressed: () {
-        register();
-      },
-      child: const Text('Register'),
-    );
-  }
-
+  //  we add our widgets to listview and show it to user.
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -233,7 +243,7 @@ class _GetRegisterDataState extends State<GetRegisterData> {
         _userIdText("ID Number", _controllerIdNumber),
         _mailText('Email', _controllerEmail),
         _genderButton(_controllerGender),
-        _bloodTypeButton('Blood Type', _controllerBloodType),
+        _bloodTypeButton(_controllerBloodType),
         _passwordText('Password', _controllerPassword),
         _registerButton(),
         _errorMessage(),

@@ -1,3 +1,5 @@
+//  A base register page, it connects with GetRegisterData class.
+
 import 'package:flutter/material.dart';
 
 import '../getDatas/get_register_data.dart';

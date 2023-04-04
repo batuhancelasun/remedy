@@ -1,3 +1,4 @@
+//  to get users info from Firestore i created a json mapper.
 class UserCredentials {
   UserCredentials(
       {required this.email, required this.name, required this.surname});
