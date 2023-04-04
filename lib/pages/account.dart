@@ -47,6 +47,8 @@ class _AccountInfoState extends State<AccountInfo> {
     }
   }
 
+  //We created firebaseUser info function to get current user's data from firestore
+
   String? myEmail;
   String? myName;
   String? myBloodType;
@@ -74,6 +76,8 @@ class _AccountInfoState extends State<AccountInfo> {
     }
   }
 
+  //This function let you update your name on firebase via elevated button press
+
   Widget _updateName() {
     return ElevatedButton(
       child: const Text('Update Your First Name'),
@@ -90,6 +94,7 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //This function let you update your last name on firebase via elevated button press
   Widget _updateLastName() {
     return ElevatedButton(
       child: const Text('Update Your Last Name'),
@@ -106,6 +111,7 @@ class _AccountInfoState extends State<AccountInfo> {
     );
   }
 
+  //This function let you update your id number on firebase via elevated button press
   Widget _updateIdNumber() {
     return ElevatedButton(
       child: const Text('Update Your ID Number'),
@@ -121,6 +127,8 @@ class _AccountInfoState extends State<AccountInfo> {
       },
     );
   }
+
+  //This function let you update your gender on firebase via elevated button press
 
   Widget _updateGender() {
     return ElevatedButton(

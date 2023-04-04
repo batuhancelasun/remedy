@@ -26,6 +26,7 @@ class OnBoardingPage extends StatelessWidget {
   final Function(int) onSkipPressed;
   final String title;
 
+  //Create the page proggress dots with this function.
   Widget createProggressDots(bool isActiveScreen) {
     return Visibility(
       visible: (currentScreenNo == 2 ? false : true),
@@ -42,6 +43,7 @@ class OnBoardingPage extends StatelessWidget {
     );
   }
 
+  //With this model we created the basic template of the buttons and onboarding page
   @override
   Widget build(BuildContext context) {
     return Padding(

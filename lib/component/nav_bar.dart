@@ -61,6 +61,7 @@ class _NavBarState extends State<NavBar> {
         padding: EdgeInsets.zero,
         // ignore: prefer_const_literals_to_create_immutables
         children: [
+          //We use future builder to get data of the current user from firestore.
           FutureBuilder(
               future: _fetch(),
               builder: (context, snapshot) {
@@ -69,6 +70,8 @@ class _NavBarState extends State<NavBar> {
                     child: CircularProgressIndicator(),
                   );
                 }
+
+                //Header part of the NavBar. User can see an image and on the image they can see their name and email.
                 return UserAccountsDrawerHeader(
                   accountName: Text(
                     "$myName" " " "$myLastName",
@@ -84,6 +87,8 @@ class _NavBarState extends State<NavBar> {
                   ),
                 );
               }),
+
+          //ListTile's for menu buttons
           ListTile(
             leading: const Icon(
               Icons.home,
@@ -109,6 +114,8 @@ class _NavBarState extends State<NavBar> {
             title: const Text("Pharmacy List"),
             onTap: () => Get.to(const GoogleMapsPage()),
           ),
+
+          //Divider used for space part with buttons.
           const Divider(),
           ListTile(
             leading: const Icon(

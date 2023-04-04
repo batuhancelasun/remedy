@@ -24,7 +24,7 @@ class _GetRegisterDataState extends State<GetRegisterData> {
   final TextEditingController _controllerGender = TextEditingController();
   final TextEditingController _controllerBloodType = TextEditingController();
 
-  late bool _passwordVisible;
+  late bool _passwordVisible = false;
 
   Future<void> register() async {
     try {

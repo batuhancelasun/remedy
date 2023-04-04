@@ -7,6 +7,7 @@ class RoundedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
 
+  //Creating the model of the rounded button which we use on Onboarding Screen modeling (onboarding_page.dart)
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
