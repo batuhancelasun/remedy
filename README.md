@@ -8,7 +8,7 @@
 <p align="center">
     Remedy is a healthcare application where users can order their medications, view pharmacy stocks, and access drug leaflets.
     <br />
-    <a href="youtu.be/bxXAOWGhfEU"> remedy Solution Challenge Demo Video </a>
+    <a href="https://youtu.be/bxXAOWGhfEU"> remedy Solution Challenge Demo Video </a>
     <br />
     <br />
     <strong>Developed by:</strong>
